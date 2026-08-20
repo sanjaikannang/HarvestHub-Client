@@ -1,0 +1,28 @@
+import { Navigate } from "react-router-dom";
+import { getItemFromStorage } from "../utils/storage";
+
+// Guard for PROTECTED routes - redirects unauthenticated users to login
+export function withAuthGuard<P extends object>(
+    WrappedComponent: React.ComponentType<P>
+): React.FC<P> {
+    const ComponentWithAuthGuard: React.FC<P> = (props) => {
+        const checkAuthentication = (): boolean => {
+            const accessToken = getItemFromStorage({ key: "accessToken" });
+            return !!accessToken;
+        };
+
+        const isAuthenticated = checkAuthentication();
+
+        // Check authentication BEFORE rendering - prevents flash
+        if (!isAuthenticated) {
+            return <Navigate to="/login" replace />;
+        }
+
+        return <WrappedComponent {...props} />;
+    };
+
+    ComponentWithAuthGuard.displayName = `withAuthGuard(${WrappedComponent.displayName || WrappedComponent.name || "Component"
+        })`;
+
+    return ComponentWithAuthGuard;
+}

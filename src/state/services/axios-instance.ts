@@ -1,0 +1,223 @@
+import axios from "axios";
+import type { AxiosInstance, AxiosRequestConfig } from "axios";
+import { getItemFromStorage, setItemInStorage, removeItemFromStorage } from "../../utils/storage";
+
+export const createAxiosInstance = (baseUrl: string): AxiosInstance => {
+    const instance = axios.create({
+        baseURL: baseUrl,
+        timeout: 120000,
+        withCredentials: true,
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        },
+    });
+
+    let tokenExpTimeInSeconds = 0;
+    const graceTime = 5;
+    let isRefreshing = false;
+    let failedQueue: Array<{
+        resolve: (token: string) => void;
+        reject: (error: Error) => void;
+    }> = [];
+
+    // URLs that don't require authentication
+    const publicEndpoints = [
+        '/auth/login',
+        '/auth/register',
+        '/auth/refresh-token',
+        '/auth/forgot-password',
+        '/auth/reset-password'
+    ];
+
+    const isPublicEndpoint = (url: string): boolean => {
+        return publicEndpoints.some(endpoint => url.includes(endpoint));
+    };
+
+    // Process queued requests after token refresh
+    const processQueue = (error: Error | null, token: string | null = null) => {
+        failedQueue.forEach(promise => {
+            if (error) {
+                promise.reject(error);
+            } else if (token) {
+                promise.resolve(token);
+            }
+        });
+        failedQueue = [];
+    };
+
+    // Refresh token function - the refresh token itself lives in an httpOnly cookie,
+    // sent automatically by the browser; we never read or store it in JS.
+    const refreshTokens = async (): Promise<{ accessToken: string } | null> => {
+        try {
+            const response = await axios.post(
+                `${baseUrl}/auth/refresh-token`,
+                {},
+                { withCredentials: true }
+            );
+
+            const { accessToken } = response.data.data;
+
+            setItemInStorage({ key: "accessToken", value: accessToken });
+
+            tokenExpTimeInSeconds = 0;
+
+            return { accessToken };
+        } catch (error) {
+            console.error("Token refresh failed:", error);
+
+            removeItemFromStorage({ key: "accessToken" });
+            removeItemFromStorage({ key: "user" });
+            removeItemFromStorage({ key: "userRole" });
+
+            window.location.href = "/login";
+            return null;
+        }
+    };
+
+    // Add access token to every request
+    instance.interceptors.request.use(
+        async (config) => {
+            try {
+                if (config.url && isPublicEndpoint(config.url)) {
+                    return config;
+                }
+
+                const token = getItemFromStorage({ key: "accessToken" });
+
+                if (!token) {
+                    window.location.href = "/login";
+                    return Promise.reject(new Error("No access token found"));
+                }
+
+                if (!tokenExpTimeInSeconds) {
+                    try {
+                        const arrayToken = (token as string).split(".");
+                        if (arrayToken.length !== 3) {
+                            throw new Error("Invalid JWT format");
+                        }
+                        const tokenPayload = arrayToken[1];
+                        const decodedPayload = JSON.parse(atob(tokenPayload));
+                        if (!decodedPayload.exp || typeof decodedPayload.exp !== "number") {
+                            throw new Error("Invalid or missing exp claim");
+                        }
+                        tokenExpTimeInSeconds = decodedPayload.exp;
+                    } catch (error) {
+                        console.error("Token decode error:", error);
+                        window.location.href = "/login";
+                        return Promise.reject(new Error("Invalid token format"));
+                    }
+                }
+
+                const currentTimeInSeconds = Math.floor(Date.now() / 1000);
+
+                if (tokenExpTimeInSeconds - currentTimeInSeconds <= graceTime) {
+                    if (!isRefreshing) {
+                        isRefreshing = true;
+
+                        try {
+                            const newTokens = await refreshTokens();
+                            isRefreshing = false;
+
+                            if (newTokens) {
+                                processQueue(null, newTokens.accessToken);
+                                config.headers.Authorization = `Bearer ${newTokens.accessToken}`;
+                                return config;
+                            } else {
+                                processQueue(new Error("Token refresh failed"), null);
+                                return Promise.reject(new Error("Token refresh failed"));
+                            }
+                        } catch (error) {
+                            isRefreshing = false;
+                            processQueue(error as Error, null);
+                            return Promise.reject(error);
+                        }
+                    } else {
+                        return new Promise((resolve, reject) => {
+                            failedQueue.push({
+                                resolve: (newToken: string) => {
+                                    config.headers.Authorization = `Bearer ${newToken}`;
+                                    resolve(config);
+                                },
+                                reject: (error: Error) => {
+                                    reject(error);
+                                }
+                            });
+                        });
+                    }
+                }
+
+                config.headers.Authorization = `Bearer ${token}`;
+                return config;
+            } catch (error) {
+                console.error("Request interceptor error:", error);
+                return Promise.reject(error);
+            }
+        },
+        (error) => Promise.reject(error)
+    );
+
+    // Handle expired token and retry logic
+    instance.interceptors.response.use(
+        (response) => response,
+        async (error) => {
+            const originalRequest = error.config as AxiosRequestConfig & {
+                _retry?: boolean;
+            };
+
+            if (error.response?.status === 401 && !originalRequest._retry) {
+                if (originalRequest.url && isPublicEndpoint(originalRequest.url)) {
+                    return Promise.reject(error);
+                }
+
+                originalRequest._retry = true;
+
+                if (!isRefreshing) {
+                    isRefreshing = true;
+
+                    try {
+                        const newTokens = await refreshTokens();
+                        isRefreshing = false;
+
+                        if (newTokens && originalRequest.headers) {
+                            processQueue(null, newTokens.accessToken);
+
+                            originalRequest.headers.Authorization = `Bearer ${newTokens.accessToken}`;
+                            return instance(originalRequest);
+                        } else {
+                            processQueue(new Error("Token refresh failed"), null);
+                            return Promise.reject(error);
+                        }
+                    } catch (refreshError) {
+                        isRefreshing = false;
+                        processQueue(refreshError as Error, null);
+                        return Promise.reject(refreshError);
+                    }
+                } else {
+                    return new Promise((resolve, reject) => {
+                        failedQueue.push({
+                            resolve: (newToken: string) => {
+                                if (originalRequest.headers) {
+                                    originalRequest.headers.Authorization = `Bearer ${newToken}`;
+                                }
+                                resolve(instance(originalRequest));
+                            },
+                            reject: (err: Error) => {
+                                reject(err);
+                            }
+                        });
+                    });
+                }
+            }
+
+            if (error.response?.status === 403) {
+                console.error("Access forbidden: You do not have permission to access this resource.");
+                window.location.href = "/unauthorized";
+            }
+
+            return Promise.reject(error);
+        }
+    );
+
+    return instance;
+};
