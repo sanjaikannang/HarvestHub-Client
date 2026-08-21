@@ -6,5 +6,15 @@ export const apiInstance = createApi({
     reducerPath: "api",
     baseQuery: axiosBaseQuery({ baseUrl: ENV.BASE_URL }),
     endpoints: () => ({}),
-    tagTypes: ["my-admin-profile", "my-farmer-profile", "my-buyer-profile", "my-delivery-partner-profile"],
+    tagTypes: [
+        "my-admin-profile",
+        "my-farmer-profile",
+        "my-buyer-profile",
+        "my-delivery-partner-profile",
+        "categories",
+        "category",
+        "my-products",
+        "products-for-review",
+        "product",
+    ],
 });

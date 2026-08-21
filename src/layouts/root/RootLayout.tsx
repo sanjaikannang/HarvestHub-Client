@@ -3,7 +3,7 @@ import { UserRole } from "../../utils/enum";
 import { useLogout } from "../../features/auth/logout/useLogout";
 import { getItemFromStorage } from "../../utils/storage";
 import { Outlet, useLocation, Link } from "react-router-dom";
-import { LogOut, Home, type LucideIcon, User, Sprout } from "lucide-react";
+import { LogOut, Home, type LucideIcon, User, Sprout, Tags, ClipboardCheck, Package } from "lucide-react";
 
 interface NavigationItem {
     id: string;
@@ -15,11 +15,14 @@ interface NavigationItem {
 
 const adminNavItems: NavigationItem[] = [
     { id: "dashboard", label: "Dashboard", path: "/admin/dashboard", icon: Home },
+    { id: "categories", label: "Categories", path: "/admin/catalog/categories", icon: Tags },
+    { id: "products", label: "Product Review", path: "/admin/catalog/products", icon: ClipboardCheck },
     { id: "profile", label: "Profile", path: "/admin/profile", icon: User },
 ];
 
 const farmerNavItems: NavigationItem[] = [
     { id: "dashboard", label: "Dashboard", path: "/farmer/dashboard", icon: Home },
+    { id: "products", label: "My Products", path: "/farmer/products", icon: Package, matchPattern: "/farmer/products" },
     { id: "profile", label: "Profile", path: "/farmer/profile", icon: User },
 ];
 
