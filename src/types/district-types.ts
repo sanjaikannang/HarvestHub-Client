@@ -23,3 +23,17 @@ export interface ListCollectionCentersResponse {
     message: string;
     data?: CollectionCenter[];
 }
+
+export interface District {
+    id: string;
+    name: string;
+    state: string;
+    districtAdminId?: string;
+    isActive: boolean;
+}
+
+export interface ListDistrictsResponse {
+    success: boolean;
+    message: string;
+    data?: District[];
+}

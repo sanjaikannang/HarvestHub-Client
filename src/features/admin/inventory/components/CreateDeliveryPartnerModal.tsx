@@ -6,6 +6,7 @@ import Modal from "../../../../common/ui/Modal";
 import Button from "../../../../common/ui/Button";
 import InputField from "../../../../common/ui/Input";
 import { useCreateDeliveryPartnerMutation } from "../../../../state/services/endpoints/auth";
+import { useListDistrictsQuery } from "../../../../state/services/endpoints/district";
 
 interface CreateDeliveryPartnerModalProps {
     isOpen: boolean;
@@ -17,6 +18,10 @@ interface FormValues {
     phone: string;
     email: string;
     password: string;
+    districtsServiced: string[];
+    vehicleType: string;
+    vehicleNumber: string;
+    capacityKg: string;
 }
 
 const validationSchema = Yup.object({
@@ -24,12 +29,21 @@ const validationSchema = Yup.object({
     phone: Yup.string().required("Phone number is required").trim(),
     email: Yup.string().email("Please enter a valid email address"),
     password: Yup.string().min(8, "Password must be at least 8 characters long").required("Password is required"),
+    districtsServiced: Yup.array().of(Yup.string()).min(1, "Select at least one district"),
+    vehicleType: Yup.string().required("Vehicle type is required").trim(),
+    vehicleNumber: Yup.string().required("Vehicle number is required").trim(),
+    capacityKg: Yup.number().typeError("Enter a valid number").positive("Must be greater than 0").required("Capacity is required"),
 });
 
 const CreateDeliveryPartnerModal = ({ isOpen, onClose }: CreateDeliveryPartnerModalProps) => {
     const [createDeliveryPartner, { isLoading }] = useCreateDeliveryPartnerMutation();
+    const { data: districtsData, isLoading: isLoadingDistricts } = useListDistrictsQuery();
+    const districts = districtsData?.data ?? [];
 
-    const initialValues: FormValues = { name: "", phone: "", email: "", password: "" };
+    const initialValues: FormValues = {
+        name: "", phone: "", email: "", password: "",
+        districtsServiced: [], vehicleType: "", vehicleNumber: "", capacityKg: "",
+    };
 
     const handleSubmit = async (values: FormValues, { setSubmitting }: any) => {
         try {
@@ -38,6 +52,10 @@ const CreateDeliveryPartnerModal = ({ isOpen, onClose }: CreateDeliveryPartnerMo
                 phone: values.phone,
                 email: values.email || undefined,
                 password: values.password,
+                districtsServiced: values.districtsServiced,
+                vehicleType: values.vehicleType,
+                vehicleNumber: values.vehicleNumber,
+                capacityKg: Number(values.capacityKg),
             }).unwrap();
 
             toast.success(response.message || "Delivery partner created successfully");
@@ -52,7 +70,7 @@ const CreateDeliveryPartnerModal = ({ isOpen, onClose }: CreateDeliveryPartnerMo
     return (
         <Modal isOpen={isOpen} onClose={onClose} title="Add Delivery Partner" size="sm">
             <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={handleSubmit}>
-                {({ values, errors, touched, handleChange, handleBlur, isSubmitting }) => (
+                {({ values, errors, touched, handleChange, handleBlur, setFieldValue, isSubmitting }) => (
                     <Form>
                         <div className="space-y-4">
                             <InputField
@@ -75,6 +93,53 @@ const CreateDeliveryPartnerModal = ({ isOpen, onClose }: CreateDeliveryPartnerMo
                                 value={values.password} onChange={handleChange} onBlur={handleBlur}
                                 error={errors.password} touched={touched.password} showPasswordToggle required
                             />
+                            <InputField
+                                id="vehicleType" name="vehicleType" label="Vehicle Type" placeholder="e.g. mini_truck"
+                                value={values.vehicleType} onChange={handleChange} onBlur={handleBlur}
+                                error={errors.vehicleType} touched={touched.vehicleType} required
+                            />
+                            <InputField
+                                id="vehicleNumber" name="vehicleNumber" label="Vehicle Number" placeholder="e.g. TN45AB1234"
+                                value={values.vehicleNumber} onChange={handleChange} onBlur={handleBlur}
+                                error={errors.vehicleNumber} touched={touched.vehicleNumber} required
+                            />
+                            <InputField
+                                id="capacityKg" name="capacityKg" type="number" label="Capacity (kg)" placeholder="e.g. 1500"
+                                value={values.capacityKg} onChange={handleChange} onBlur={handleBlur}
+                                error={errors.capacityKg} touched={touched.capacityKg} required
+                            />
+
+                            <div>
+                                <label className="block text-sm font-medium text-textTertiary mb-2">
+                                    Districts Serviced<span className="text-red-600 ml-1">*</span>
+                                </label>
+                                <div className="border border-borderLight rounded-lg p-3 max-h-32 overflow-y-auto space-y-2">
+                                    {isLoadingDistricts ? (
+                                        <p className="text-sm text-textTertiary">Loading districts...</p>
+                                    ) : districts.length === 0 ? (
+                                        <p className="text-sm text-textTertiary">No districts available</p>
+                                    ) : (
+                                        districts.map((d) => (
+                                            <label key={d.id} className="flex items-center gap-2 text-sm text-textPrimary cursor-pointer">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={values.districtsServiced.includes(d.id)}
+                                                    onChange={(e) => {
+                                                        const next = e.target.checked
+                                                            ? [...values.districtsServiced, d.id]
+                                                            : values.districtsServiced.filter((id) => id !== d.id);
+                                                        setFieldValue("districtsServiced", next);
+                                                    }}
+                                                />
+                                                {d.name}, {d.state}
+                                            </label>
+                                        ))
+                                    )}
+                                </div>
+                                {touched.districtsServiced && errors.districtsServiced && (
+                                    <p className="text-xs text-red-600 mt-1">{errors.districtsServiced as string}</p>
+                                )}
+                            </div>
 
                             <div className="flex justify-end gap-3 pt-2">
                                 <Button type="button" variant="outline" size="sm" onClick={onClose}>

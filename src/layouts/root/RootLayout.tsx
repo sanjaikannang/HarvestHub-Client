@@ -44,6 +44,7 @@ const buyerNavItems: NavigationItem[] = [
 
 const deliveryPartnerNavItems: NavigationItem[] = [
     { id: "dashboard", label: "Dashboard", path: "/delivery-partner/dashboard", icon: Home },
+    { id: "deliveries", label: "My Deliveries", path: "/delivery-partner/deliveries", icon: Truck },
     { id: "profile", label: "Profile", path: "/delivery-partner/profile", icon: User },
 ];
 

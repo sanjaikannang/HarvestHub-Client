@@ -35,3 +35,11 @@ export interface ListOrdersResponse {
     message: string;
     data?: Order[];
 }
+
+export interface UpdateOrderStatusRequest {
+    status: DeliveryStatus;
+}
+
+export interface AssignDeliveryPartnerRequest {
+    deliveryPartnerId: string;
+}

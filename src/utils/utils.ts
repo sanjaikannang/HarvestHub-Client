@@ -57,6 +57,9 @@ const CHIP_VARIANTS: Record<string, ChipVariant> = {
     IN_TRANSIT: "blue",
     OUT_FOR_DELIVERY: "blue",
     DELIVERED: "green",
+    AVAILABLE: "green",
+    BUSY: "yellow",
+    OFFLINE: "gray",
 };
 
 export const getChipVariant = (value: string): ChipVariant => {

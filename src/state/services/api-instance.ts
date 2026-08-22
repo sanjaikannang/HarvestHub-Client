@@ -36,5 +36,6 @@ export const apiInstance = createApi({
         "my-payouts",
         "payouts",
         "platform-settings",
+        "districts",
     ],
 });

@@ -1,4 +1,4 @@
-import { Truck, MapPin, Languages, Phone } from "lucide-react";
+import { Truck, Package, Phone, CheckCircle2 } from "lucide-react";
 import { PageHeader } from "../../../../common/ui/PageHeader";
 import { Container } from "../../../../common/ui/Container";
 import StatsCard from "../components/StatsCard";
@@ -19,8 +19,7 @@ const DeliveryPartnerDashboardPage = () => {
                             Welcome{profile?.name ? `, ${profile.name}` : ''}
                         </h2>
                         <p className="text-sm text-textSecondary">
-                            Delivery jobs and payout history will appear here once the
-                            order & delivery management module is built out.
+                            Orders assigned to you and their delivery progress live under "My Deliveries".
                         </p>
                     </div>
 
@@ -28,10 +27,10 @@ const DeliveryPartnerDashboardPage = () => {
                         <p className="text-sm text-textSecondary">Loading...</p>
                     ) : (
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                            <StatsCard label="Role" value={formatEnumLabel(profile?.role || '-')} icon={Truck} />
+                            <StatsCard label="Availability" value={formatEnumLabel(profile?.currentStatus || '-')} icon={CheckCircle2} />
+                            <StatsCard label="Active Orders" value={String(profile?.activeOrderCount ?? '-')} icon={Package} />
+                            <StatsCard label="Vehicle" value={profile?.vehicleNumber || 'Not set'} icon={Truck} />
                             <StatsCard label="Phone" value={profile?.phone || '-'} icon={Phone} />
-                            <StatsCard label="District" value={profile?.districtId || 'Not set'} icon={MapPin} />
-                            <StatsCard label="Language" value={formatEnumLabel(profile?.preferredLanguage || '-')} icon={Languages} />
                         </div>
                     )}
                 </div>

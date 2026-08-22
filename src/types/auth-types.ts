@@ -120,6 +120,10 @@ export interface CreateDeliveryPartnerRequest {
     phone: string;
     email?: string;
     password: string;
+    districtsServiced: string[];
+    vehicleType: string;
+    vehicleNumber: string;
+    capacityKg: number;
 }
 
 export interface CreateDeliveryPartnerResponse {

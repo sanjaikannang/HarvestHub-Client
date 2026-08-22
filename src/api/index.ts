@@ -14,6 +14,7 @@ import { payment } from "./payment.api";
 import { order } from "./order.api";
 import { payout } from "./payout.api";
 import { platformSettings } from "./platform-settings.api";
+import { district } from "./district.api";
 
 export const api = {
     auth,
@@ -32,4 +33,5 @@ export const api = {
     order,
     payout,
     platformSettings,
+    district,
 };

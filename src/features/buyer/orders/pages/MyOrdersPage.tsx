@@ -2,15 +2,23 @@ import { useMemo } from "react";
 import Chip from "../../../../common/ui/Chip";
 import { Container } from "../../../../common/ui/Container";
 import { PageHeader } from "../../../../common/ui/PageHeader";
+import { DeliveryStatus } from "../../../../utils/enum";
 import { Table, type ColumnDef } from "../../../../common/ui/Table";
 import { formatEnumLabel, getChipVariant } from "../../../../utils/utils";
 import type { Order } from "../../../../types/order-types";
 import ProductNameCell from "../../../inspector/inspections/components/ProductNameCell";
+import { useOrdersSocket } from "../hooks/useOrdersSocket";
 import { useListMyOrdersQuery } from "../../../../state/services/endpoints/order";
 
 const MyOrdersPage = () => {
-    const { data, isLoading } = useListMyOrdersQuery();
+    const { data, isLoading, refetch } = useListMyOrdersQuery();
     const orders = useMemo(() => data?.data ?? [], [data]);
+
+    const activeOrderIds = useMemo(
+        () => orders.filter((order) => order.deliveryStatus !== DeliveryStatus.DELIVERED).map((order) => order.id),
+        [orders],
+    );
+    useOrdersSocket(activeOrderIds, refetch);
 
     const columns: ColumnDef<Order, unknown>[] = [
         { header: "Product", cell: ({ row }) => <ProductNameCell productId={row.original.productId} /> },

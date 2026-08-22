@@ -133,6 +133,14 @@ export enum PayoutStatus {
     REVERSED = "reversed",
 }
 
+// database/delivery-partner-profiles.md — used for auto-assignment's
+// least-loaded/available matching
+export enum DeliveryPartnerAvailability {
+    AVAILABLE = "available",
+    BUSY = "busy",
+    OFFLINE = "offline",
+}
+
 // database/orders.md
 export enum DeliveryStatus {
     ORDER_CONFIRMED = "order_confirmed",
