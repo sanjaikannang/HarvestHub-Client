@@ -18,6 +18,8 @@ import {
     CreateDeliveryPartnerRequest,
     CreateDeliveryPartnerResponse,
     ListDeliveryPartnersResponse,
+    UpdateLanguageRequest,
+    UpdateLanguageResponse,
 } from "../../../types/auth-types";
 
 export const authApiService = apiInstance.injectEndpoints({
@@ -106,6 +108,13 @@ export const authApiService = apiInstance.injectEndpoints({
             }),
             providesTags: ["delivery-partners"],
         }),
+        updateLanguage: build.mutation<UpdateLanguageResponse, UpdateLanguageRequest>({
+            query: (data) => ({
+                url: api.auth.updateLanguage(),
+                method: "PATCH",
+                data,
+            }),
+        }),
     }),
 });
 
@@ -120,4 +129,5 @@ export const {
     useListInspectorsQuery,
     useCreateDeliveryPartnerMutation,
     useListDeliveryPartnersQuery,
+    useUpdateLanguageMutation,
 } = authApiService;

@@ -9,4 +9,5 @@ export const auth = {
     listInspectors: () => "/auth/inspectors",
     createDeliveryPartner: () => "/auth/create-delivery-partner",
     listDeliveryPartners: () => "/auth/delivery-partners",
+    updateLanguage: () => "/auth/update-language",
 };

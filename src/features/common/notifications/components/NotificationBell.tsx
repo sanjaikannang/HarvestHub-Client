@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Bell, CheckCheck } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { formatDateTime } from "../../../../utils/date";
 import { getItemFromStorage } from "../../../../utils/storage";
 import { useNotificationSocket } from "../hooks/useNotificationSocket";
@@ -11,6 +12,7 @@ import {
 } from "../../../../state/services/endpoints/notification";
 
 const NotificationBell = () => {
+    const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
 
@@ -48,7 +50,7 @@ const NotificationBell = () => {
             <button
                 onClick={() => setIsOpen((prev) => !prev)}
                 className="relative flex items-center justify-center h-9 w-9 rounded-full hover:bg-bgSecondary transition-colors cursor-pointer"
-                aria-label="Notifications"
+                aria-label={t('notifications.title')}
             >
                 <Bell className="w-5 h-5 text-textSecondary" />
                 {unreadCount > 0 && (
@@ -61,21 +63,21 @@ const NotificationBell = () => {
             {isOpen && (
                 <div className="absolute right-0 mt-2 w-80 max-h-96 overflow-hidden flex flex-col rounded-xl border border-borderLight bg-whiteColor shadow-lg z-50">
                     <div className="flex items-center justify-between px-4 py-3 border-b border-borderLight flex-shrink-0">
-                        <p className="text-sm font-semibold text-textPrimary">Notifications</p>
+                        <p className="text-sm font-semibold text-textPrimary">{t('notifications.title')}</p>
                         {unreadCount > 0 && (
                             <button
                                 onClick={() => markAllRead()}
                                 disabled={isMarkingAll}
                                 className="flex items-center gap-1 text-xs text-primary hover:underline cursor-pointer disabled:opacity-50"
                             >
-                                <CheckCheck className="w-3.5 h-3.5" /> Mark all read
+                                <CheckCheck className="w-3.5 h-3.5" /> {t('notifications.markAllRead')}
                             </button>
                         )}
                     </div>
 
                     <div className="overflow-y-auto no-scrollbar">
                         {notifications.length === 0 ? (
-                            <p className="text-sm text-textTertiary text-center py-8">No notifications yet.</p>
+                            <p className="text-sm text-textTertiary text-center py-8">{t('notifications.empty')}</p>
                         ) : (
                             notifications.map((notif) => (
                                 <button

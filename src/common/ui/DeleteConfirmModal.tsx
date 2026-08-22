@@ -1,5 +1,6 @@
 import Modal from "./Modal";
 import Button from "./Button";
+import { useTranslation } from "react-i18next";
 
 interface DeleteConfirmModalProps {
     isOpen: boolean;
@@ -11,6 +12,8 @@ interface DeleteConfirmModalProps {
 }
 
 const DeleteConfirmModal = ({ isOpen, onClose, onConfirm, isDeleting = false, title, message }: DeleteConfirmModalProps) => {
+    const { t } = useTranslation();
+
     return (
         <Modal
             isOpen={isOpen}
@@ -24,10 +27,10 @@ const DeleteConfirmModal = ({ isOpen, onClose, onConfirm, isDeleting = false, ti
                 </p>
                 <div className="flex justify-end gap-3">
                     <Button variant="outline" size="sm" onClick={onClose}>
-                        Cancel
+                        {t('common.cancel')}
                     </Button>
                     <Button variant="danger" size="sm" loading={isDeleting} disabled={isDeleting} onClick={onConfirm}>
-                        {isDeleting ? '' : 'Delete'}
+                        {isDeleting ? '' : t('common.delete')}
                     </Button>
                 </div>
             </div>

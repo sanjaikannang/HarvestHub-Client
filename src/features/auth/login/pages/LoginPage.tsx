@@ -1,6 +1,7 @@
 import toast from "react-hot-toast";
 import { Formik, Form } from 'formik';
 import { User, Lock } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from 'react-router-dom';
 import Button from "../../../../common/ui/Button";
 import { UserRole } from "../../../../utils/enum";
@@ -17,6 +18,7 @@ interface LoginFormValues {
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const { t, i18n } = useTranslation();
   const [login, { isLoading }] = useLoginMutation();
 
   const initialValues: LoginFormValues = {
@@ -50,6 +52,13 @@ const LoginPage = () => {
 
       toast.success(response.message || 'Login successful!');
 
+      // Applied automatically on login, per modules/12-localization/requirement.md
+      // — this is the account's own saved preference, not the guest selection
+      // that may currently be active in the browser.
+      if (response.data.user.preferredLanguage) {
+        i18n.changeLanguage(response.data.user.preferredLanguage);
+      }
+
       if (response.data.user.isFirstLogin) {
         navigate('/reset-password');
       } else {
@@ -71,8 +80,8 @@ const LoginPage = () => {
           <div className="p-8 lg:p-12">
             <div className="mb-8 text-center">
               <h1 className="text-2xl font-bold text-primary mb-1">HarvestHub</h1>
-              <h2 className="text-xl font-semibold text-neutral-900 mb-2">Login</h2>
-              <p className="text-sm text-neutral-600">Enter your phone or email to access your account</p>
+              <h2 className="text-xl font-semibold text-neutral-900 mb-2">{t('auth.login.title')}</h2>
+              <p className="text-sm text-neutral-600">{t('auth.login.subtitle')}</p>
             </div>
 
             <Formik
@@ -87,8 +96,8 @@ const LoginPage = () => {
                       id="identifier"
                       name="identifier"
                       type="text"
-                      label="Phone or Email"
-                      placeholder="Enter your phone number or email"
+                      label={t('auth.login.identifier')}
+                      placeholder={t('auth.login.identifierPlaceholder')}
                       value={values.identifier}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -102,8 +111,8 @@ const LoginPage = () => {
                       id="password"
                       name="password"
                       type="password"
-                      label="Password"
-                      placeholder="Enter your password"
+                      label={t('auth.login.password')}
+                      placeholder={t('auth.login.passwordPlaceholder')}
                       value={values.password}
                       onChange={handleChange}
                       onBlur={handleBlur}
@@ -119,7 +128,7 @@ const LoginPage = () => {
                         to="/forgot-password"
                         className="text-sm text-primary font-medium hover:underline transition-colors duration-200"
                       >
-                        Forgot Password?
+                        {t('auth.login.forgotPassword')}
                       </Link>
                     </div>
 
@@ -132,7 +141,7 @@ const LoginPage = () => {
                         disabled={isSubmitting || isLoading}
                         fullWidth
                       >
-                        {isSubmitting || isLoading ? '' : 'Login'}
+                        {isSubmitting || isLoading ? '' : t('auth.login.submit')}
                       </Button>
                     </div>
                   </div>
@@ -142,12 +151,12 @@ const LoginPage = () => {
 
             <div className="mt-6 text-center">
               <p className="text-sm text-neutral-600">
-                New farmer or buyer?{' '}
+                {t('auth.login.noAccount')}{' '}
                 <Link
                   to="/register"
                   className="text-primary font-medium hover:underline transition-colors duration-200"
                 >
-                  Create an account
+                  {t('auth.login.createAccount')}
                 </Link>
               </p>
             </div>

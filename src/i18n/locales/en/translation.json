@@ -1,0 +1,144 @@
+{
+  "common": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "submit": "Submit",
+    "edit": "Edit",
+    "delete": "Delete",
+    "loading": "Loading...",
+    "noResults": "No results.",
+    "search": "Search",
+    "language": "Language",
+    "english": "English",
+    "tamil": "தமிழ்",
+    "role": "Role",
+    "phone": "Phone",
+    "district": "District",
+    "homeDistrict": "Home District",
+    "notSet": "Not set"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "categories": "Categories",
+    "productReview": "Product Review",
+    "inspections": "Inspections",
+    "inventory": "Inventory",
+    "orders": "Orders",
+    "payouts": "Payouts",
+    "settings": "Settings",
+    "notificationTemplates": "Notification Templates",
+    "disputes": "Disputes",
+    "auditLog": "Audit Log",
+    "profile": "Profile",
+    "myProducts": "My Products",
+    "myOrders": "My Orders",
+    "myPayouts": "My Payouts",
+    "marketplace": "Marketplace",
+    "myBids": "My Bids",
+    "myPayments": "My Payments",
+    "myDisputes": "My Disputes",
+    "myDeliveries": "My Deliveries",
+    "myInspections": "My Inspections",
+    "logout": "Logout"
+  },
+  "landing": {
+    "tagline": "A direct-to-market platform connecting farmers, buyers, and delivery partners — transparent bidding, quality inspection, and fair payouts, from harvest to doorstep.",
+    "getStarted": "Get Started",
+    "login": "Login",
+    "forFarmersTitle": "For Farmers",
+    "forFarmersDesc": "List your produce and reach verified buyers directly.",
+    "forBuyersTitle": "For Buyers",
+    "forBuyersDesc": "Bid on inspected, quality-graded produce with confidence.",
+    "forDeliveryTitle": "For Delivery Partners",
+    "forDeliveryDesc": "Pick up delivery jobs and get paid reliably.",
+    "managedBy": "Managed by district admins and inspectors to keep the marketplace fair and accountable."
+  },
+  "auth": {
+    "login": {
+      "title": "Login",
+      "subtitle": "Enter your phone or email to access your account",
+      "identifier": "Phone or Email",
+      "identifierPlaceholder": "Enter your phone number or email",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password",
+      "forgotPassword": "Forgot Password?",
+      "submit": "Login",
+      "noAccount": "New farmer or buyer?",
+      "createAccount": "Create an account"
+    },
+    "register": {
+      "title": "Create an account",
+      "subtitle": "Only farmers and buyers can self-register",
+      "iAmFarmer": "I'm a Farmer",
+      "iAmBuyer": "I'm a Buyer",
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "Enter your full name",
+      "phone": "Phone Number",
+      "email": "Email (optional)",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password",
+      "passwordPlaceholder": "Create a password",
+      "confirmPassword": "Confirm Password",
+      "confirmPasswordPlaceholder": "Re-enter your password",
+      "submit": "Create account",
+      "haveAccount": "Already have an account?",
+      "login": "Login"
+    }
+  },
+  "dashboard": {
+    "admin": {
+      "welcome": "Welcome",
+      "subtitle": "Platform-wide activity, performance, and pending actions across all districts.",
+      "statTotalFarmers": "Total Farmers",
+      "statTotalBuyers": "Total Buyers",
+      "statTotalProducts": "Total Products",
+      "statTotalOrders": "Total Orders",
+      "statTotalRevenue": "Total Revenue",
+      "statTotalCommission": "Total Commission",
+      "statPendingEscalations": "Pending Escalations",
+      "districtsOverview": "Districts Overview",
+      "tableDistrict": "District",
+      "tableState": "State",
+      "tableActiveFarmers": "Active Farmers",
+      "tableActiveBuyers": "Active Buyers",
+      "tableProductsInPipeline": "Products in Pipeline",
+      "tableOrdersInProgress": "Orders in Progress",
+      "noDistrictsYet": "No districts yet."
+    },
+    "districtAdmin": {
+      "title": "District Overview",
+      "subtitle": "Pending actions and activity scoped to your own district.",
+      "statPendingProductReviews": "Pending Product Reviews",
+      "statPendingInspections": "Pending Inspections",
+      "statActiveBiddingSessions": "Active Bidding Sessions",
+      "statOrdersInProgress": "Orders in Progress",
+      "statOpenDisputes": "Open Disputes",
+      "statTotalDisputes": "Total Disputes"
+    },
+    "farmer": {
+      "welcome": "Welcome",
+      "subtitle": "Your produce listings, bids received, and payouts appear here."
+    },
+    "buyer": {
+      "welcome": "Welcome",
+      "subtitle": "Your active bids, payments, and order history appear here."
+    },
+    "inspector": {
+      "welcome": "Welcome",
+      "subtitle": "Your assigned visits show up here — see \"My Inspections\" to record findings once you've completed a visit.",
+      "statVisitsScheduled": "Visits Scheduled"
+    },
+    "deliveryPartner": {
+      "welcome": "Welcome",
+      "subtitle": "Orders assigned to you and their delivery progress live under \"My Deliveries\".",
+      "statAvailability": "Availability",
+      "statActiveOrders": "Active Orders",
+      "statVehicle": "Vehicle"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "markAllRead": "Mark all read",
+    "empty": "No notifications yet."
+  }
+}

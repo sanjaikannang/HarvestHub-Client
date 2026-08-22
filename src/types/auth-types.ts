@@ -1,4 +1,4 @@
-import { UserRole } from "../utils/enum";
+import { PreferredLanguage, UserRole } from "../utils/enum";
 
 export interface LoginRequest {
     identifier: string;
@@ -16,11 +16,22 @@ export interface LoginResponse {
             email?: string;
             role: UserRole;
             isFirstLogin: boolean;
+            preferredLanguage: PreferredLanguage;
         };
         tokens: {
             accessToken: string;
         }
     };
+}
+
+export interface UpdateLanguageRequest {
+    preferredLanguage: PreferredLanguage;
+}
+
+export interface UpdateLanguageResponse {
+    success: boolean;
+    message: string;
+    data?: { preferredLanguage: PreferredLanguage };
 }
 
 export interface RegisterRequest {
