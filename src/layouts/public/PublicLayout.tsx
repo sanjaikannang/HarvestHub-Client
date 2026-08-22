@@ -1,6 +1,10 @@
+import { useTranslation } from "react-i18next";
 import { Outlet, Link } from "react-router-dom";
+import LanguageSwitcher from "../../features/common/language/components/LanguageSwitcher";
 
 const PublicLayout = () => {
+    const { t } = useTranslation();
+
     return (
         <>
             <div className="min-h-screen">
@@ -12,11 +16,12 @@ const PublicLayout = () => {
                             </Link>
 
                             <div className="flex items-center gap-4">
+                                <LanguageSwitcher />
                                 <Link
                                     to="/login"
                                     className="px-4 py-1 bg-primary text-whiteColor rounded-lg hover:scale-105 transition-transform"
                                 >
-                                    Login
+                                    {t("landing.login")}
                                 </Link>
                             </div>
                         </div>

@@ -12,6 +12,14 @@ import {
     ForgotPasswordResponse,
     ResetPasswordRequest,
     ResetPasswordResponse,
+    CreateInspectorRequest,
+    CreateInspectorResponse,
+    ListInspectorsResponse,
+    CreateDeliveryPartnerRequest,
+    CreateDeliveryPartnerResponse,
+    ListDeliveryPartnersResponse,
+    UpdateLanguageRequest,
+    UpdateLanguageResponse,
 } from "../../../types/auth-types";
 
 export const authApiService = apiInstance.injectEndpoints({
@@ -69,6 +77,44 @@ export const authApiService = apiInstance.injectEndpoints({
                 };
             },
         }),
+        createInspector: build.mutation<CreateInspectorResponse, CreateInspectorRequest>({
+            query: (data) => ({
+                url: api.auth.createInspector(),
+                method: "POST",
+                data,
+            }),
+            invalidatesTags: ["inspectors"],
+        }),
+        listInspectors: build.query<ListInspectorsResponse, { districtId?: string } | void>({
+            query: (params) => ({
+                url: api.auth.listInspectors(),
+                method: "GET",
+                params: params || undefined,
+            }),
+            providesTags: ["inspectors"],
+        }),
+        createDeliveryPartner: build.mutation<CreateDeliveryPartnerResponse, CreateDeliveryPartnerRequest>({
+            query: (data) => ({
+                url: api.auth.createDeliveryPartner(),
+                method: "POST",
+                data,
+            }),
+            invalidatesTags: ["delivery-partners"],
+        }),
+        listDeliveryPartners: build.query<ListDeliveryPartnersResponse, void>({
+            query: () => ({
+                url: api.auth.listDeliveryPartners(),
+                method: "GET",
+            }),
+            providesTags: ["delivery-partners"],
+        }),
+        updateLanguage: build.mutation<UpdateLanguageResponse, UpdateLanguageRequest>({
+            query: (data) => ({
+                url: api.auth.updateLanguage(),
+                method: "PATCH",
+                data,
+            }),
+        }),
     }),
 });
 
@@ -79,4 +125,9 @@ export const {
     useChangePasswordMutation,
     useForgotPasswordMutation,
     useResetPasswordMutation,
+    useCreateInspectorMutation,
+    useListInspectorsQuery,
+    useCreateDeliveryPartnerMutation,
+    useListDeliveryPartnersQuery,
+    useUpdateLanguageMutation,
 } = authApiService;

@@ -18,14 +18,14 @@ export function withGuestGuard<P extends object>(
         if (isAuthenticated) {
             const userRole = getItemFromStorage({ key: "userRole" }) as UserRole;
 
-            // DISTRICT_ADMIN/INSPECTOR have no dashboard built yet. Their target
-            // (and the fallback for any unrecognized role) must NOT be "/" or
-            // "/login" — both are guest-guarded, so redirecting an authenticated
-            // user there just re-runs this same check and bounces right back.
+            // The fallback for any unrecognized role must NOT be "/" or
+            // "/login" — both are guest-guarded, so redirecting an
+            // authenticated user there just re-runs this same check and
+            // bounces right back.
             const roleRouteMap: Record<UserRole, string> = {
                 [UserRole.SUPER_ADMIN]: "/admin/dashboard",
-                [UserRole.DISTRICT_ADMIN]: "/unauthorized",
-                [UserRole.INSPECTOR]: "/unauthorized",
+                [UserRole.DISTRICT_ADMIN]: "/district-admin/dashboard",
+                [UserRole.INSPECTOR]: "/inspector/dashboard",
                 [UserRole.FARMER]: "/farmer/dashboard",
                 [UserRole.BUYER]: "/buyer/dashboard",
                 [UserRole.DELIVERY_PARTNER]: "/delivery-partner/dashboard",

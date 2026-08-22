@@ -2,6 +2,7 @@ import toast from "react-hot-toast";
 import { useState } from "react";
 import { Formik, Form } from 'formik';
 import { User, Mail, Lock, Phone } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { Link, useNavigate } from 'react-router-dom';
 import Button from "../../../../common/ui/Button";
 import { UserRole } from "../../../../utils/enum";
@@ -19,6 +20,7 @@ interface RegisterFormValues {
 
 const RegisterPage = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
   const [register, { isLoading }] = useRegisterMutation();
   const [role, setRole] = useState<UserRole.FARMER | UserRole.BUYER>(UserRole.FARMER);
 
@@ -59,8 +61,8 @@ const RegisterPage = () => {
         <div className="p-8 lg:p-10">
           <div className="mb-6 text-center">
             <h1 className="text-2xl font-bold text-primary mb-1">HarvestHub</h1>
-            <h2 className="text-xl font-semibold text-neutral-900 mb-2">Create an account</h2>
-            <p className="text-sm text-neutral-600">Only farmers and buyers can self-register</p>
+            <h2 className="text-xl font-semibold text-neutral-900 mb-2">{t('auth.register.title')}</h2>
+            <p className="text-sm text-neutral-600">{t('auth.register.subtitle')}</p>
           </div>
 
           <div className="flex rounded-lg border border-borderLight overflow-hidden mb-6">
@@ -69,14 +71,14 @@ const RegisterPage = () => {
               onClick={() => setRole(UserRole.FARMER)}
               className={`flex-1 py-2 text-sm font-medium cursor-pointer transition-colors ${role === UserRole.FARMER ? 'bg-primary text-whiteColor' : 'bg-whiteColor text-textSecondary'}`}
             >
-              I'm a Farmer
+              {t('auth.register.iAmFarmer')}
             </button>
             <button
               type="button"
               onClick={() => setRole(UserRole.BUYER)}
               className={`flex-1 py-2 text-sm font-medium cursor-pointer transition-colors ${role === UserRole.BUYER ? 'bg-primary text-whiteColor' : 'bg-whiteColor text-textSecondary'}`}
             >
-              I'm a Buyer
+              {t('auth.register.iAmBuyer')}
             </button>
           </div>
 
@@ -89,27 +91,27 @@ const RegisterPage = () => {
               <Form>
                 <div className="space-y-4">
                   <InputField
-                    id="name" name="name" type="text" label="Full Name" placeholder="Enter your full name"
+                    id="name" name="name" type="text" label={t('auth.register.fullName')} placeholder={t('auth.register.fullNamePlaceholder')}
                     value={values.name} onChange={handleChange} onBlur={handleBlur}
                     error={errors.name} touched={touched.name} icon={User} required
                   />
                   <InputField
-                    id="phone" name="phone" type="tel" label="Phone Number" placeholder="+91XXXXXXXXXX"
+                    id="phone" name="phone" type="tel" label={t('auth.register.phone')} placeholder="+91XXXXXXXXXX"
                     value={values.phone} onChange={handleChange} onBlur={handleBlur}
                     error={errors.phone} touched={touched.phone} icon={Phone} required
                   />
                   <InputField
-                    id="email" name="email" type="email" label="Email (optional)" placeholder="Enter your email"
+                    id="email" name="email" type="email" label={t('auth.register.email')} placeholder={t('auth.register.emailPlaceholder')}
                     value={values.email} onChange={handleChange} onBlur={handleBlur}
                     error={errors.email} touched={touched.email} icon={Mail}
                   />
                   <InputField
-                    id="password" name="password" type="password" label="Password" placeholder="Create a password"
+                    id="password" name="password" type="password" label={t('auth.register.password')} placeholder={t('auth.register.passwordPlaceholder')}
                     value={values.password} onChange={handleChange} onBlur={handleBlur}
                     error={errors.password} touched={touched.password} icon={Lock} showPasswordToggle required
                   />
                   <InputField
-                    id="confirmPassword" name="confirmPassword" type="password" label="Confirm Password" placeholder="Re-enter your password"
+                    id="confirmPassword" name="confirmPassword" type="password" label={t('auth.register.confirmPassword')} placeholder={t('auth.register.confirmPasswordPlaceholder')}
                     value={values.confirmPassword} onChange={handleChange} onBlur={handleBlur}
                     error={errors.confirmPassword} touched={touched.confirmPassword} icon={Lock} showPasswordToggle required
                   />
@@ -119,7 +121,7 @@ const RegisterPage = () => {
                       type="submit" variant="primary" size="md"
                       loading={isSubmitting || isLoading} disabled={isSubmitting || isLoading} fullWidth
                     >
-                      {isSubmitting || isLoading ? '' : 'Create account'}
+                      {isSubmitting || isLoading ? '' : t('auth.register.submit')}
                     </Button>
                   </div>
                 </div>
@@ -129,9 +131,9 @@ const RegisterPage = () => {
 
           <div className="mt-6 text-center">
             <p className="text-sm text-neutral-600">
-              Already have an account?{' '}
+              {t('auth.register.haveAccount')}{' '}
               <Link to="/login" className="text-primary font-medium hover:underline">
-                Login
+                {t('auth.register.login')}
               </Link>
             </p>
           </div>

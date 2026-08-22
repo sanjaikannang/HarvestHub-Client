@@ -1,12 +1,32 @@
-import { User, Phone, Mail, MapPin, Languages, CheckCircle2, XCircle } from "lucide-react";
+import toast from "react-hot-toast";
+import { User, Phone, Mail, MapPin, Languages, CheckCircle2, XCircle, Truck, Package } from "lucide-react";
+import Chip from "../../../../common/ui/Chip";
+import Button from "../../../../common/ui/Button";
 import { PageHeader } from "../../../../common/ui/PageHeader";
 import { Container } from "../../../../common/ui/Container";
-import { formatEnumLabel } from "../../../../utils/utils";
-import { useGetMyDeliveryPartnerProfileQuery } from "../../../../state/services/endpoints/delivery-partner-profile";
+import { DeliveryPartnerAvailability } from "../../../../utils/enum";
+import { formatEnumLabel, getChipVariant } from "../../../../utils/utils";
+import { useGetMyDeliveryPartnerProfileQuery, useUpdateAvailabilityMutation } from "../../../../state/services/endpoints/delivery-partner-profile";
+
+const AVAILABILITY_OPTIONS = [
+    DeliveryPartnerAvailability.AVAILABLE,
+    DeliveryPartnerAvailability.BUSY,
+    DeliveryPartnerAvailability.OFFLINE,
+];
 
 const DeliveryPartnerProfilePage = () => {
     const { data, isLoading } = useGetMyDeliveryPartnerProfileQuery();
     const profile = data?.data;
+    const [updateAvailability, { isLoading: isUpdatingAvailability }] = useUpdateAvailabilityMutation();
+
+    const handleAvailabilityChange = async (status: DeliveryPartnerAvailability) => {
+        try {
+            const response = await updateAvailability({ status }).unwrap();
+            toast.success(response.message || "Availability updated");
+        } catch (error: any) {
+            toast.error(error.data?.message || "Failed to update availability");
+        }
+    };
 
     if (isLoading || !profile) {
         return (
@@ -56,8 +76,45 @@ const DeliveryPartnerProfilePage = () => {
                             <div className="flex items-center gap-2 text-textSecondary">
                                 <User className="w-4 h-4" /> {profile.id}
                             </div>
+                            {profile.vehicleType && (
+                                <div className="flex items-center gap-2 text-textSecondary">
+                                    <Truck className="w-4 h-4" /> {formatEnumLabel(profile.vehicleType)} — {profile.vehicleNumber}
+                                </div>
+                            )}
+                            {profile.capacityKg !== undefined && (
+                                <div className="flex items-center gap-2 text-textSecondary">
+                                    <Package className="w-4 h-4" /> Capacity: {profile.capacityKg} kg
+                                </div>
+                            )}
+                            {profile.activeOrderCount !== undefined && (
+                                <div className="flex items-center gap-2 text-textSecondary">
+                                    Active Orders: {profile.activeOrderCount}
+                                </div>
+                            )}
                         </div>
                     </div>
+
+                    {profile.currentStatus && (
+                        <div className="bg-whiteColor rounded-xl border border-borderLight p-6 space-y-3 mt-4">
+                            <div className="flex items-center justify-between">
+                                <p className="text-sm font-medium text-textPrimary">Availability</p>
+                                <Chip label={formatEnumLabel(profile.currentStatus)} variant={getChipVariant(profile.currentStatus)} />
+                            </div>
+                            <div className="flex gap-2">
+                                {AVAILABILITY_OPTIONS.map((status) => (
+                                    <Button
+                                        key={status}
+                                        variant={profile.currentStatus === status ? "primary" : "outline"}
+                                        size="sm"
+                                        disabled={isUpdatingAvailability || profile.currentStatus === status}
+                                        onClick={() => handleAvailabilityChange(status)}
+                                    >
+                                        {formatEnumLabel(status)}
+                                    </Button>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </Container>
         </>

@@ -1,8 +1,10 @@
-import { PreferredLanguage, UserRole } from "../utils/enum";
+import { DeliveryPartnerAvailability, PreferredLanguage, UserRole } from "../utils/enum";
 
 // Shared shape — every role's "get my profile" endpoint returns this today,
 // since none of the roles have grown a dedicated profile schema yet (see the
-// server's src/services/user-service/*/*.service.ts comments).
+// server's src/services/user-service/*/*.service.ts comments). The
+// Delivery Partner fields are only present for that role, merged in from its
+// DeliveryPartnerProfile (see database/delivery-partner-profiles.md).
 export interface MyProfileData {
     id: string;
     name: string;
@@ -12,6 +14,13 @@ export interface MyProfileData {
     districtId?: string;
     preferredLanguage: PreferredLanguage;
     isPhoneVerified: boolean;
+    districtsServiced?: string[];
+    vehicleType?: string;
+    vehicleNumber?: string;
+    capacityKg?: number;
+    currentStatus?: DeliveryPartnerAvailability;
+    activeOrderCount?: number;
+    rating?: number;
 }
 
 export interface GetMyProfileResponse {

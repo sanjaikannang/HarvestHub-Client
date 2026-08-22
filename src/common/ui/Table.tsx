@@ -1,5 +1,6 @@
 import { ChevronLeft, ChevronRight, ChevronUp, ChevronDown, ChevronsUpDown, Search, ListFilter } from "lucide-react";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 export interface ColumnDef<TData, TValue> {
     accessorKey?: string;
@@ -50,6 +51,7 @@ export function Table<TData, TValue>({
     sortOrder,
     onSortChange,
 }: TableProps<TData, TValue>) {
+    const { t } = useTranslation();
     const [searchTerm, setSearchTerm] = useState("");
     const [showFilters, setShowFilters] = useState(false);
 
@@ -90,7 +92,7 @@ export function Table<TData, TValue>({
                                 <input
                                     id="search"
                                     type="text"
-                                    placeholder="Search"
+                                    placeholder={t('common.search')}
                                     className="pl-9 w-60 px-3 py-2 border border-borderLight rounded-lg focus:outline-none text-textPrimary placeholder:text-textPlaceholder"
                                     value={searchTerm}
                                     onChange={handleSearch}
@@ -245,7 +247,7 @@ export function Table<TData, TValue>({
                                             colSpan={columns.length}
                                             className="h-24 text-center text-sm text-textSecondary"
                                         >
-                                            No results.
+                                            {t('common.noResults')}
                                         </td>
                                     </tr>
                                 )}

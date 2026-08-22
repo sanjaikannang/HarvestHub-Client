@@ -3,6 +3,16 @@ import { UserRole } from "../../../utils/enum";
 import { RoleGuard } from "../../../hoc/withRoleGuard";
 import AdminDashboardPage from "../dashboard/pages/AdminDashboardPage";
 import AdminProfilePage from "../profile/pages/AdminProfilePage";
+import CategoriesPage from "../catalog/categories/pages/CategoriesPage";
+import ProductsReviewPage from "../catalog/products/pages/ProductsReviewPage";
+import InspectionsPage from "../inspections/pages/InspectionsPage";
+import InventoryPage from "../inventory/pages/InventoryPage";
+import OrdersPage from "../orders/pages/OrdersPage";
+import PayoutsPage from "../payouts/pages/PayoutsPage";
+import PlatformSettingsPage from "../settings/pages/PlatformSettingsPage";
+import NotificationTemplatesPage from "../notification-templates/pages/NotificationTemplatesPage";
+import DisputesPage from "../disputes/pages/DisputesPage";
+import AuditLogPage from "../audit-log/pages/AuditLogPage";
 
 export const adminRoutes: RouteObject[] = [
     {
@@ -12,5 +22,45 @@ export const adminRoutes: RouteObject[] = [
     {
         path: "/admin/profile",
         element: <RoleGuard allowedRoles={[UserRole.SUPER_ADMIN]}><AdminProfilePage /></RoleGuard>,
+    },
+    {
+        path: "/admin/catalog/categories",
+        element: <RoleGuard allowedRoles={[UserRole.SUPER_ADMIN]}><CategoriesPage /></RoleGuard>,
+    },
+    {
+        path: "/admin/catalog/products",
+        element: <RoleGuard allowedRoles={[UserRole.SUPER_ADMIN]}><ProductsReviewPage /></RoleGuard>,
+    },
+    {
+        path: "/admin/inspections",
+        element: <RoleGuard allowedRoles={[UserRole.SUPER_ADMIN]}><InspectionsPage /></RoleGuard>,
+    },
+    {
+        path: "/admin/inventory",
+        element: <RoleGuard allowedRoles={[UserRole.SUPER_ADMIN]}><InventoryPage /></RoleGuard>,
+    },
+    {
+        path: "/admin/orders",
+        element: <RoleGuard allowedRoles={[UserRole.SUPER_ADMIN]}><OrdersPage /></RoleGuard>,
+    },
+    {
+        path: "/admin/payouts",
+        element: <RoleGuard allowedRoles={[UserRole.SUPER_ADMIN]}><PayoutsPage /></RoleGuard>,
+    },
+    {
+        path: "/admin/settings",
+        element: <RoleGuard allowedRoles={[UserRole.SUPER_ADMIN]}><PlatformSettingsPage /></RoleGuard>,
+    },
+    {
+        path: "/admin/notification-templates",
+        element: <RoleGuard allowedRoles={[UserRole.SUPER_ADMIN]}><NotificationTemplatesPage /></RoleGuard>,
+    },
+    {
+        path: "/admin/disputes",
+        element: <RoleGuard allowedRoles={[UserRole.SUPER_ADMIN]}><DisputesPage /></RoleGuard>,
+    },
+    {
+        path: "/admin/audit-log",
+        element: <RoleGuard allowedRoles={[UserRole.SUPER_ADMIN]}><AuditLogPage /></RoleGuard>,
     },
 ];

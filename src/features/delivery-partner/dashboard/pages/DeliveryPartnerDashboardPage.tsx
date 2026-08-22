@@ -1,4 +1,5 @@
-import { Truck, MapPin, Languages, Phone } from "lucide-react";
+import { Truck, Package, Phone, CheckCircle2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 import { PageHeader } from "../../../../common/ui/PageHeader";
 import { Container } from "../../../../common/ui/Container";
 import StatsCard from "../components/StatsCard";
@@ -6,32 +7,32 @@ import { formatEnumLabel } from "../../../../utils/utils";
 import { useGetMyDeliveryPartnerProfileQuery } from "../../../../state/services/endpoints/delivery-partner-profile";
 
 const DeliveryPartnerDashboardPage = () => {
+    const { t } = useTranslation();
     const { data, isLoading } = useGetMyDeliveryPartnerProfileQuery();
     const profile = data?.data;
 
     return (
         <>
-            <PageHeader>Dashboard</PageHeader>
+            <PageHeader>{t('nav.dashboard')}</PageHeader>
             <Container>
                 <div className="py-6 space-y-6">
                     <div>
                         <h2 className="text-xl font-semibold text-textPrimary">
-                            Welcome{profile?.name ? `, ${profile.name}` : ''}
+                            {t('dashboard.deliveryPartner.welcome')}{profile?.name ? `, ${profile.name}` : ''}
                         </h2>
                         <p className="text-sm text-textSecondary">
-                            Delivery jobs and payout history will appear here once the
-                            order & delivery management module is built out.
+                            {t('dashboard.deliveryPartner.subtitle')}
                         </p>
                     </div>
 
                     {isLoading ? (
-                        <p className="text-sm text-textSecondary">Loading...</p>
+                        <p className="text-sm text-textSecondary">{t('common.loading')}</p>
                     ) : (
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                            <StatsCard label="Role" value={formatEnumLabel(profile?.role || '-')} icon={Truck} />
-                            <StatsCard label="Phone" value={profile?.phone || '-'} icon={Phone} />
-                            <StatsCard label="District" value={profile?.districtId || 'Not set'} icon={MapPin} />
-                            <StatsCard label="Language" value={formatEnumLabel(profile?.preferredLanguage || '-')} icon={Languages} />
+                            <StatsCard label={t('dashboard.deliveryPartner.statAvailability')} value={formatEnumLabel(profile?.currentStatus || '-')} icon={CheckCircle2} />
+                            <StatsCard label={t('dashboard.deliveryPartner.statActiveOrders')} value={String(profile?.activeOrderCount ?? '-')} icon={Package} />
+                            <StatsCard label={t('dashboard.deliveryPartner.statVehicle')} value={profile?.vehicleNumber || t('common.notSet')} icon={Truck} />
+                            <StatsCard label={t('common.phone')} value={profile?.phone || '-'} icon={Phone} />
                         </div>
                     )}
                 </div>

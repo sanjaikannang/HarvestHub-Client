@@ -3,6 +3,12 @@ import { UserRole } from "../../../utils/enum";
 import { RoleGuard } from "../../../hoc/withRoleGuard";
 import BuyerDashboardPage from "../dashboard/pages/BuyerDashboardPage";
 import BuyerProfilePage from "../profile/pages/BuyerProfilePage";
+import MarketplacePage from "../marketplace/pages/MarketplacePage";
+import ProductBiddingPage from "../marketplace/pages/ProductBiddingPage";
+import MyBidsPage from "../bids/pages/MyBidsPage";
+import MyPaymentsPage from "../payments/pages/MyPaymentsPage";
+import MyOrdersPage from "../orders/pages/MyOrdersPage";
+import MyDisputesPage from "../disputes/pages/MyDisputesPage";
 
 export const buyerRoutes: RouteObject[] = [
     {
@@ -12,5 +18,29 @@ export const buyerRoutes: RouteObject[] = [
     {
         path: "/buyer/profile",
         element: <RoleGuard allowedRoles={[UserRole.BUYER]}><BuyerProfilePage /></RoleGuard>,
+    },
+    {
+        path: "/buyer/marketplace",
+        element: <RoleGuard allowedRoles={[UserRole.BUYER]}><MarketplacePage /></RoleGuard>,
+    },
+    {
+        path: "/buyer/marketplace/:id",
+        element: <RoleGuard allowedRoles={[UserRole.BUYER]}><ProductBiddingPage /></RoleGuard>,
+    },
+    {
+        path: "/buyer/bids",
+        element: <RoleGuard allowedRoles={[UserRole.BUYER]}><MyBidsPage /></RoleGuard>,
+    },
+    {
+        path: "/buyer/payments",
+        element: <RoleGuard allowedRoles={[UserRole.BUYER]}><MyPaymentsPage /></RoleGuard>,
+    },
+    {
+        path: "/buyer/orders",
+        element: <RoleGuard allowedRoles={[UserRole.BUYER]}><MyOrdersPage /></RoleGuard>,
+    },
+    {
+        path: "/buyer/disputes",
+        element: <RoleGuard allowedRoles={[UserRole.BUYER]}><MyDisputesPage /></RoleGuard>,
     },
 ];

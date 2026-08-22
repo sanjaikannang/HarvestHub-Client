@@ -1,36 +1,69 @@
 import { ReactNode } from "react";
 import { UserRole } from "../../utils/enum";
+import { useTranslation } from "react-i18next";
 import { useLogout } from "../../features/auth/logout/useLogout";
 import { getItemFromStorage } from "../../utils/storage";
 import { Outlet, useLocation, Link } from "react-router-dom";
-import { LogOut, Home, type LucideIcon, User, Sprout } from "lucide-react";
+import { LogOut, Home, type LucideIcon, User, Sprout, Tags, ClipboardCheck, Package, ClipboardList, Warehouse, ShoppingBasket, Gavel, Wallet, ReceiptText, Settings, Truck, MessageSquareText, ShieldAlert } from "lucide-react";
+import NotificationBell from "../../features/common/notifications/components/NotificationBell";
+import LanguageSwitcher from "../../features/common/language/components/LanguageSwitcher";
 
 interface NavigationItem {
     id: string;
-    label: string;
+    labelKey: string;
     path: string;
     icon: LucideIcon;
     matchPattern?: string;
 }
 
 const adminNavItems: NavigationItem[] = [
-    { id: "dashboard", label: "Dashboard", path: "/admin/dashboard", icon: Home },
-    { id: "profile", label: "Profile", path: "/admin/profile", icon: User },
+    { id: "dashboard", labelKey: "nav.dashboard", path: "/admin/dashboard", icon: Home },
+    { id: "categories", labelKey: "nav.categories", path: "/admin/catalog/categories", icon: Tags },
+    { id: "products", labelKey: "nav.productReview", path: "/admin/catalog/products", icon: ClipboardCheck },
+    { id: "inspections", labelKey: "nav.inspections", path: "/admin/inspections", icon: ClipboardList },
+    { id: "inventory", labelKey: "nav.inventory", path: "/admin/inventory", icon: Warehouse },
+    { id: "orders", labelKey: "nav.orders", path: "/admin/orders", icon: Truck },
+    { id: "payouts", labelKey: "nav.payouts", path: "/admin/payouts", icon: Wallet },
+    { id: "settings", labelKey: "nav.settings", path: "/admin/settings", icon: Settings },
+    { id: "notification-templates", labelKey: "nav.notificationTemplates", path: "/admin/notification-templates", icon: MessageSquareText },
+    { id: "disputes", labelKey: "nav.disputes", path: "/admin/disputes", icon: ShieldAlert },
+    { id: "audit-log", labelKey: "nav.auditLog", path: "/admin/audit-log", icon: ClipboardList },
+    { id: "profile", labelKey: "nav.profile", path: "/admin/profile", icon: User },
 ];
 
 const farmerNavItems: NavigationItem[] = [
-    { id: "dashboard", label: "Dashboard", path: "/farmer/dashboard", icon: Home },
-    { id: "profile", label: "Profile", path: "/farmer/profile", icon: User },
+    { id: "dashboard", labelKey: "nav.dashboard", path: "/farmer/dashboard", icon: Home },
+    { id: "products", labelKey: "nav.myProducts", path: "/farmer/products", icon: Package, matchPattern: "/farmer/products" },
+    { id: "orders", labelKey: "nav.myOrders", path: "/farmer/orders", icon: Truck },
+    { id: "payouts", labelKey: "nav.myPayouts", path: "/farmer/payouts", icon: Wallet },
+    { id: "profile", labelKey: "nav.profile", path: "/farmer/profile", icon: User },
 ];
 
 const buyerNavItems: NavigationItem[] = [
-    { id: "dashboard", label: "Dashboard", path: "/buyer/dashboard", icon: Home },
-    { id: "profile", label: "Profile", path: "/buyer/profile", icon: User },
+    { id: "dashboard", labelKey: "nav.dashboard", path: "/buyer/dashboard", icon: Home },
+    { id: "marketplace", labelKey: "nav.marketplace", path: "/buyer/marketplace", icon: ShoppingBasket, matchPattern: "/buyer/marketplace" },
+    { id: "bids", labelKey: "nav.myBids", path: "/buyer/bids", icon: Gavel },
+    { id: "payments", labelKey: "nav.myPayments", path: "/buyer/payments", icon: Wallet },
+    { id: "orders", labelKey: "nav.myOrders", path: "/buyer/orders", icon: ReceiptText },
+    { id: "disputes", labelKey: "nav.myDisputes", path: "/buyer/disputes", icon: ShieldAlert },
+    { id: "profile", labelKey: "nav.profile", path: "/buyer/profile", icon: User },
 ];
 
 const deliveryPartnerNavItems: NavigationItem[] = [
-    { id: "dashboard", label: "Dashboard", path: "/delivery-partner/dashboard", icon: Home },
-    { id: "profile", label: "Profile", path: "/delivery-partner/profile", icon: User },
+    { id: "dashboard", labelKey: "nav.dashboard", path: "/delivery-partner/dashboard", icon: Home },
+    { id: "deliveries", labelKey: "nav.myDeliveries", path: "/delivery-partner/deliveries", icon: Truck },
+    { id: "profile", labelKey: "nav.profile", path: "/delivery-partner/profile", icon: User },
+];
+
+const inspectorNavItems: NavigationItem[] = [
+    { id: "dashboard", labelKey: "nav.dashboard", path: "/inspector/dashboard", icon: Home },
+    { id: "inspections", labelKey: "nav.myInspections", path: "/inspector/inspections", icon: ClipboardList },
+    { id: "profile", labelKey: "nav.profile", path: "/inspector/profile", icon: User },
+];
+
+const districtAdminNavItems: NavigationItem[] = [
+    { id: "dashboard", labelKey: "nav.dashboard", path: "/district-admin/dashboard", icon: Home },
+    { id: "audit-log", labelKey: "nav.auditLog", path: "/district-admin/audit-log", icon: ClipboardList },
 ];
 
 const navigationItemsByRole: Record<string, NavigationItem[]> = {
@@ -38,6 +71,8 @@ const navigationItemsByRole: Record<string, NavigationItem[]> = {
     [UserRole.FARMER]: farmerNavItems,
     [UserRole.BUYER]: buyerNavItems,
     [UserRole.DELIVERY_PARTNER]: deliveryPartnerNavItems,
+    [UserRole.INSPECTOR]: inspectorNavItems,
+    [UserRole.DISTRICT_ADMIN]: districtAdminNavItems,
 };
 
 export interface RootLayoutContext {
@@ -45,6 +80,7 @@ export interface RootLayoutContext {
 }
 
 export function RootLayout() {
+    const { t } = useTranslation();
     const location = useLocation();
     const { logout } = useLogout();
 
@@ -97,7 +133,7 @@ export function RootLayout() {
                                         }`}
                                 >
                                     <Icon className="w-5 h-5" />
-                                    <span>{item.label}</span>
+                                    <span>{t(item.labelKey)}</span>
                                 </Link>
                             );
                         })}
@@ -109,7 +145,7 @@ export function RootLayout() {
                             onClick={handleLogout}
                             className="flex items-center justify-center gap-3 px-4 py-3 w-full text-textSecondary cursor-pointer transition-colors">
                             <LogOut className="w-5 h-5" />
-                            <span>Logout</span>
+                            <span>{t("nav.logout")}</span>
                         </button>
                     </div>
                 </aside>
@@ -118,6 +154,9 @@ export function RootLayout() {
                 <div className="flex-1 flex flex-col min-w-0">
                     <header className="h-16 bg-whiteColor border-b border-borderLight flex items-center justify-end px-6 flex-shrink-0 shadow-sm">
                         <div className="flex items-center gap-4">
+                            <LanguageSwitcher />
+                            <NotificationBell />
+
                             <div className="flex flex-col text-right">
                                 <span className="text-xs font-medium text-textSecondary">
                                     {userData?.name || userData?.email || userData?.phone}
