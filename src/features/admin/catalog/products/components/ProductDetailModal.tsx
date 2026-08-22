@@ -33,7 +33,7 @@ const ProductDetailModal = ({ isOpen, onClose, product, category }: ProductDetai
                 {product.images.length > 0 && (
                     <div className="flex gap-2 overflow-x-auto">
                         {product.images.map((url, i) => (
-                            <img key={i} src={url} alt={`${product.name} ${i + 1}`} className="h-24 w-24 object-cover rounded-lg border border-borderLight flex-shrink-0" />
+                            <img key={i} src={url} alt={`${product.name} ${i + 1}`} className="h-24 w-24 object-cover border border-borderLight flex-shrink-0" />
                         ))}
                     </div>
                 )}
@@ -56,14 +56,14 @@ const ProductDetailModal = ({ isOpen, onClose, product, category }: ProductDetai
                 </div>
 
                 {product.rejectionReason && (
-                    <div className="p-3 rounded-lg bg-red-50 border border-red-100">
+                    <div className="p-3 bg-red-50 border border-red-100">
                         <p className="text-xs font-medium text-red-700">Rejection Reason</p>
                         <p className="text-sm text-red-700">{product.rejectionReason}</p>
                     </div>
                 )}
 
                 {product.changeRequestNotes && (
-                    <div className="p-3 rounded-lg bg-orange-50 border border-orange-100">
+                    <div className="p-3 bg-orange-50 border border-orange-100">
                         <p className="text-xs font-medium text-orange-700">Requested Changes</p>
                         <p className="text-sm text-orange-700">{product.changeRequestNotes}</p>
                     </div>

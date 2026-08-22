@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { useLogout } from "../../features/auth/logout/useLogout";
 import { getItemFromStorage } from "../../utils/storage";
 import { Outlet, useLocation, Link } from "react-router-dom";
-import { LogOut, Home, type LucideIcon, User, Sprout, Tags, ClipboardCheck, Package, ClipboardList, Warehouse, ShoppingBasket, Gavel, Wallet, ReceiptText, Settings, Truck, MessageSquareText, ShieldAlert } from "lucide-react";
+import { LogOut, Home, type LucideIcon, User, Sprout, Tags, ClipboardCheck, Package, ClipboardList, Warehouse, ShoppingBasket, Gavel, Wallet, ReceiptText, Settings, Truck, MessageSquareText, ShieldAlert, Building2 } from "lucide-react";
 import NotificationBell from "../../features/common/notifications/components/NotificationBell";
 import LanguageSwitcher from "../../features/common/language/components/LanguageSwitcher";
 
@@ -22,6 +22,7 @@ const adminNavItems: NavigationItem[] = [
     { id: "products", labelKey: "nav.productReview", path: "/admin/catalog/products", icon: ClipboardCheck },
     { id: "inspections", labelKey: "nav.inspections", path: "/admin/inspections", icon: ClipboardList },
     { id: "inventory", labelKey: "nav.inventory", path: "/admin/inventory", icon: Warehouse },
+    { id: "collection-centers", labelKey: "nav.collectionCenters", path: "/admin/collection-centers", icon: Building2 },
     { id: "orders", labelKey: "nav.orders", path: "/admin/orders", icon: Truck },
     { id: "payouts", labelKey: "nav.payouts", path: "/admin/payouts", icon: Wallet },
     { id: "settings", labelKey: "nav.settings", path: "/admin/settings", icon: Settings },
@@ -127,7 +128,7 @@ export function RootLayout() {
                                 <Link
                                     key={item.id}
                                     to={item.path}
-                                    className={`flex items-center gap-3 px-4 py-2 rounded-lg transition-colors ${isActive
+                                    className={`flex items-center gap-3 px-4 py-2 transition-colors ${isActive
                                         ? "bg-primaryLighter text-primary"
                                         : "text-textSecondary hover:bg-bgTertiary"
                                         }`}
@@ -166,7 +167,7 @@ export function RootLayout() {
                                 </span>
                             </div>
 
-                            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-whiteColor font-semibold">
+                            <div className="w-8 h-8 bg-primary flex items-center justify-center text-whiteColor font-semibold">
                                 {roleInitial}
                             </div>
                         </div>

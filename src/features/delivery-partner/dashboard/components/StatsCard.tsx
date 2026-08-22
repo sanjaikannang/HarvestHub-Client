@@ -7,8 +7,8 @@ interface StatsCardProps {
 }
 
 const StatsCard = ({ label, value, icon: Icon }: StatsCardProps) => (
-    <div className="bg-whiteColor rounded-xl border border-borderLight p-5 flex items-center gap-4">
-        <div className="w-10 h-10 rounded-lg bg-primaryLighter flex items-center justify-center shrink-0">
+    <div className="bg-whiteColor border border-borderLight p-5 flex items-center gap-4">
+        <div className="w-10 h-10 bg-primaryLighter flex items-center justify-center shrink-0">
             <Icon className="w-5 h-5 text-primary" />
         </div>
         <div className="min-w-0">

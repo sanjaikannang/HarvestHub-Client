@@ -44,7 +44,7 @@ const AdminDashboardPage = () => {
 
                             <div>
                                 <h3 className="text-md font-semibold text-textPrimary mb-3">{t('dashboard.admin.districtsOverview')}</h3>
-                                <div className="overflow-x-auto rounded-xl border border-borderLight bg-whiteColor">
+                                <div className="overflow-x-auto border border-borderLight bg-whiteColor">
                                     <table className="w-full border-collapse">
                                         <thead className="bg-bgSecondary">
                                             <tr>

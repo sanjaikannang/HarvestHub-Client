@@ -57,7 +57,7 @@ const ImageUrlListField = ({
                             title="Remove image"
                             onClick={() => removeAt(index)}
                             disabled={required && images.length === 1}
-                            className="p-2 rounded hover:bg-bgSecondary text-red-600 hover:text-red-700 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+                            className="p-2 hover:bg-bgSecondary text-red-600 hover:text-red-700 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
                         >
                             <Trash2 className="h-4 w-4" />
                         </button>

@@ -23,11 +23,11 @@ const ProductBiddingPage = () => {
             <PageHeader>{product.name}</PageHeader>
             <Container>
                 <div className="py-6 max-w-3xl space-y-4">
-                    <div className="bg-whiteColor rounded-xl border border-borderLight p-6 space-y-3">
+                    <div className="bg-whiteColor border border-borderLight p-6 space-y-3">
                         {product.images.length > 0 && (
                             <div className="flex gap-2 overflow-x-auto">
                                 {product.images.map((url, i) => (
-                                    <img key={i} src={url} alt={`${product.name} ${i + 1}`} className="h-28 w-28 object-cover rounded-lg border border-borderLight flex-shrink-0" />
+                                    <img key={i} src={url} alt={`${product.name} ${i + 1}`} className="h-28 w-28 object-cover border border-borderLight flex-shrink-0" />
                                 ))}
                             </div>
                         )}

@@ -7,6 +7,7 @@ import CategoriesPage from "../catalog/categories/pages/CategoriesPage";
 import ProductsReviewPage from "../catalog/products/pages/ProductsReviewPage";
 import InspectionsPage from "../inspections/pages/InspectionsPage";
 import InventoryPage from "../inventory/pages/InventoryPage";
+import CollectionCentersPage from "../collection-centers/pages/CollectionCentersPage";
 import OrdersPage from "../orders/pages/OrdersPage";
 import PayoutsPage from "../payouts/pages/PayoutsPage";
 import PlatformSettingsPage from "../settings/pages/PlatformSettingsPage";
@@ -38,6 +39,10 @@ export const adminRoutes: RouteObject[] = [
     {
         path: "/admin/inventory",
         element: <RoleGuard allowedRoles={[UserRole.SUPER_ADMIN]}><InventoryPage /></RoleGuard>,
+    },
+    {
+        path: "/admin/collection-centers",
+        element: <RoleGuard allowedRoles={[UserRole.SUPER_ADMIN]}><CollectionCentersPage /></RoleGuard>,
     },
     {
         path: "/admin/orders",

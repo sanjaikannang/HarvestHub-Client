@@ -57,7 +57,7 @@ const RegisterPage = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-primaryLighter via-white to-primaryLighter flex items-center justify-center p-4 py-10">
-      <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden">
+      <div className="w-full max-w-md bg-white shadow-2xl overflow-hidden">
         <div className="p-8 lg:p-10">
           <div className="mb-6 text-center">
             <h1 className="text-2xl font-bold text-primary mb-1">HarvestHub</h1>
@@ -65,7 +65,7 @@ const RegisterPage = () => {
             <p className="text-sm text-neutral-600">{t('auth.register.subtitle')}</p>
           </div>
 
-          <div className="flex rounded-lg border border-borderLight overflow-hidden mb-6">
+          <div className="flex border border-borderLight overflow-hidden mb-6">
             <button
               type="button"
               onClick={() => setRole(UserRole.FARMER)}

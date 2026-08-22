@@ -42,9 +42,9 @@ const DeliveryPartnerProfilePage = () => {
             <PageHeader>My Profile</PageHeader>
             <Container>
                 <div className="py-6 max-w-2xl">
-                    <div className="bg-whiteColor rounded-xl border border-borderLight p-6 space-y-4">
+                    <div className="bg-whiteColor border border-borderLight p-6 space-y-4">
                         <div className="flex items-center gap-3 pb-4 border-b border-borderLight">
-                            <div className="w-12 h-12 rounded-full bg-primary text-whiteColor flex items-center justify-center font-semibold text-lg">
+                            <div className="w-12 h-12 bg-primary text-whiteColor flex items-center justify-center font-semibold text-lg">
                                 {profile.name.charAt(0).toUpperCase()}
                             </div>
                             <div>
@@ -95,7 +95,7 @@ const DeliveryPartnerProfilePage = () => {
                     </div>
 
                     {profile.currentStatus && (
-                        <div className="bg-whiteColor rounded-xl border border-borderLight p-6 space-y-3 mt-4">
+                        <div className="bg-whiteColor border border-borderLight p-6 space-y-3 mt-4">
                             <div className="flex items-center justify-between">
                                 <p className="text-sm font-medium text-textPrimary">Availability</p>
                                 <Chip label={formatEnumLabel(profile.currentStatus)} variant={getChipVariant(profile.currentStatus)} />

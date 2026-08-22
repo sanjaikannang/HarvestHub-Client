@@ -71,7 +71,7 @@ const RaiseDisputeModal = ({ isOpen, onClose, orderId }: RaiseDisputeModalProps)
                         id="description" name="description" rows={4}
                         value={description} onChange={(e) => setDescription(e.target.value)}
                         placeholder="Describe the issue in detail"
-                        className={`block w-full px-3 py-2 border rounded-lg focus:outline-none duration-200 text-textTertiary placeholder-borderLight ${touched && !isDescriptionValid ? "border-red-500" : "border-borderLight"
+                        className={`block w-full px-3 py-2 border focus:outline-none duration-200 text-textTertiary placeholder-borderLight ${touched && !isDescriptionValid ? "border-red-500" : "border-borderLight"
                             }`}
                     />
                     {touched && !isDescriptionValid && <p className="text-xs text-red-600 mt-1">Description is required</p>}

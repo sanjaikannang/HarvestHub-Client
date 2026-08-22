@@ -77,7 +77,7 @@ export function Table<TData, TValue>({
         <>
             <div className="w-full">
                 {/* Search and Filter Bar */}
-                <div className="flex items-center justify-between gap-4 px-4 py-4 bg-whiteColor border border-borderLight border-b-0 rounded-t-xl">
+                <div className="flex items-center justify-between gap-4 px-4 py-4 bg-whiteColor border border-borderLight border-b-0 ">
                     <div>
                         <div className="font-medium text-2xl">{tableTitle}</div>
                     </div>
@@ -93,7 +93,7 @@ export function Table<TData, TValue>({
                                     id="search"
                                     type="text"
                                     placeholder={t('common.search')}
-                                    className="pl-9 w-60 px-3 py-2 border border-borderLight rounded-lg focus:outline-none text-textPrimary placeholder:text-textPlaceholder"
+                                    className="pl-9 w-60 px-3 py-2 border border-borderLight focus:outline-none text-textPrimary placeholder:text-textPlaceholder"
                                     value={searchTerm}
                                     onChange={handleSearch}
                                 />
@@ -106,14 +106,14 @@ export function Table<TData, TValue>({
                                 type="button"
                                 onClick={() => setShowFilters((prev) => !prev)}
                                 title="Filters"
-                                className={`relative flex items-center justify-center h-10 w-10 border rounded-lg cursor-pointer transition-colors ${showFilters
+                                className={`relative flex items-center justify-center h-10 w-10 border cursor-pointer transition-colors ${showFilters
                                     ? "bg-primary text-whiteColor border-primary"
                                     : "border-borderLight text-textSecondary hover:bg-bgSecondary"
                                     }`}
                             >
                                 <ListFilter size={18} />
                                 {hasActiveFilters && (
-                                    <span className="absolute -top-1 -right-1 h-2.5 w-2.5 rounded-full bg-red-500 border-2 border-whiteColor" />
+                                    <span className="absolute -top-1 -right-1 h-2.5 w-2.5 bg-red-500 border-2 border-whiteColor" />
                                 )}
                             </button>
                         )}
@@ -143,7 +143,7 @@ export function Table<TData, TValue>({
                                             key={i}
                                             className="px-4 py-3 text-left text-sm font-medium text-textSecondary"
                                         >
-                                            <div className="h-4 w-24 rounded bg-borderLight animate-pulse" />
+                                            <div className="h-4 w-24 bg-borderLight animate-pulse" />
                                         </th>
                                     ))}
                                 </tr>
@@ -153,7 +153,7 @@ export function Table<TData, TValue>({
                                     <tr key={rowIndex} className="bg-whiteColor border-b border-borderLight">
                                         {columns.map((_, colIndex) => (
                                             <td key={colIndex} className="px-4 py-3">
-                                                <div className="h-4 w-full rounded bg-borderLight animate-pulse" />
+                                                <div className="h-4 w-full bg-borderLight animate-pulse" />
                                             </td>
                                         ))}
                                     </tr>
@@ -258,29 +258,29 @@ export function Table<TData, TValue>({
 
                 {/* Pagination Section - Show Skeleton when Loading */}
                 {isLoading ? (
-                    <div className="flex justify-end px-4 py-4 bg-whiteColor border-b border-r border-l border-borderLight rounded-b-xl">
+                    <div className="flex justify-end px-4 py-4 bg-whiteColor border-b border-r border-l border-borderLight ">
                         <div className="flex items-center gap-2">
-                            <div className="h-8 w-10 rounded bg-borderLight animate-pulse flex items-center justify-center">
+                            <div className="h-8 w-10 bg-borderLight animate-pulse flex items-center justify-center">
                                 <ChevronLeft className="text-textDisabled" size={16} />
                             </div>
 
                             <div className="flex items-center gap-0.5">
-                                <div className="h-7 w-7 rounded bg-borderLight animate-pulse" />
-                                <div className="h-7 w-7 rounded bg-borderLight animate-pulse" />
+                                <div className="h-7 w-7 bg-borderLight animate-pulse" />
+                                <div className="h-7 w-7 bg-borderLight animate-pulse" />
                                 <span className="text-textTertiary px-1">...</span>
-                                <div className="h-7 w-7 rounded bg-borderLight animate-pulse" />
+                                <div className="h-7 w-7 bg-borderLight animate-pulse" />
                             </div>
 
-                            <div className="h-8 w-10 rounded bg-borderLight animate-pulse flex items-center justify-center">
+                            <div className="h-8 w-10 bg-borderLight animate-pulse flex items-center justify-center">
                                 <ChevronRight className="text-textDisabled" size={16} />
                             </div>
                         </div>
                     </div>
                 ) : (
-                    <div className="flex justify-end px-4 py-4 bg-whiteColor border-b border-r border-l border-borderLight rounded-b-xl shadow-lg">
+                    <div className="flex justify-end px-4 py-4 bg-whiteColor border-b border-r border-l border-borderLight shadow-lg">
                         <div className="flex items-center gap-2">
                             <button
-                                className="h-8 px-4 text-sm font-medium rounded-lg cursor-pointer border border-borderLight text-textPrimary hover:bg-bgSecondary disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="h-8 px-4 text-sm font-medium cursor-pointer border border-borderLight text-textPrimary hover:bg-bgSecondary disabled:opacity-50 disabled:cursor-not-allowed"
                                 onClick={() => onPageChange(pageNumber - 1)}
                                 disabled={!canGoPrevious}
                             >
@@ -294,7 +294,7 @@ export function Table<TData, TValue>({
                                         <button
                                             key={pageNum}
                                             onClick={() => onPageChange(pageNum)}
-                                            className={`h-7 w-7 text-sm font-medium rounded-lg transition-colors cursor-pointer ${pageNumber === pageNum
+                                            className={`h-7 w-7 text-sm font-medium transition-colors cursor-pointer ${pageNumber === pageNum
                                                 ? "text-whiteColor bg-primary"
                                                 : "text-textPrimary hover:bg-bgSecondary"
                                                 }`}
@@ -308,7 +308,7 @@ export function Table<TData, TValue>({
                                         <span className="text-textTertiary px-1">...</span>
                                         <button
                                             onClick={() => onPageChange(totalPages)}
-                                            className={`h-7 w-7 text-sm font-medium rounded-lg transition-colors cursor-pointer ${pageNumber === totalPages
+                                            className={`h-7 w-7 text-sm font-medium transition-colors cursor-pointer ${pageNumber === totalPages
                                                 ? "text-whiteColor bg-primary"
                                                 : "text-textPrimary hover:bg-bgSecondary"
                                                 }`}
@@ -320,7 +320,7 @@ export function Table<TData, TValue>({
                             </div>
 
                             <button
-                                className="h-8 px-4 text-sm font-medium rounded-lg cursor-pointer border border-borderLight text-textPrimary hover:bg-bgSecondary disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="h-8 px-4 text-sm font-medium cursor-pointer border border-borderLight text-textPrimary hover:bg-bgSecondary disabled:opacity-50 disabled:cursor-not-allowed"
                                 onClick={() => onPageChange(pageNumber + 1)}
                                 disabled={!canGoNext}
                             >

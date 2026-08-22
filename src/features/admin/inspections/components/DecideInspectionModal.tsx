@@ -110,7 +110,7 @@ const DecideInspectionModal = ({ isOpen, onClose, inspection }: DecideInspection
                             value={reason}
                             onChange={(e) => setReason(e.target.value)}
                             placeholder={decision === AdminDecision.REJECTED ? "Why is this product being rejected?" : "What needs to change?"}
-                            className={`block w-full px-3 py-2 border rounded-lg focus:outline-none text-textTertiary placeholder-borderLight ${reasonError && touched ? "border-red-500" : "border-borderLight"}`}
+                            className={`block w-full px-3 py-2 border focus:outline-none text-textTertiary placeholder-borderLight ${reasonError && touched ? "border-red-500" : "border-borderLight"}`}
                         />
                         {reasonError && touched && <p className="text-xs text-red-600 mt-1">A reason is required</p>}
                     </div>

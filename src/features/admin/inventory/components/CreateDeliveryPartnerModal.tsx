@@ -113,7 +113,7 @@ const CreateDeliveryPartnerModal = ({ isOpen, onClose }: CreateDeliveryPartnerMo
                                 <label className="block text-sm font-medium text-textTertiary mb-2">
                                     Districts Serviced<span className="text-red-600 ml-1">*</span>
                                 </label>
-                                <div className="border border-borderLight rounded-lg p-3 max-h-32 overflow-y-auto space-y-2">
+                                <div className="border border-borderLight p-3 max-h-32 overflow-y-auto space-y-2">
                                     {isLoadingDistricts ? (
                                         <p className="text-sm text-textTertiary">Loading districts...</p>
                                     ) : districts.length === 0 ? (

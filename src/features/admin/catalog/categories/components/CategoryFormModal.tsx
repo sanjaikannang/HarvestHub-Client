@@ -107,7 +107,7 @@ const CategoryFormModal = ({ isOpen, onClose, category }: CategoryFormModalProps
                                     {({ push, remove }) => (
                                         <div className="space-y-3">
                                             {values.subcategories.map((subcategory, index) => (
-                                                <div key={index} className="flex items-start gap-2 p-3 rounded-lg border border-borderLight">
+                                                <div key={index} className="flex items-start gap-2 p-3 border border-borderLight">
                                                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 flex-1">
                                                         <InputField
                                                             id={`subcategories.${index}.key`} name={`subcategories.${index}.key`}
@@ -136,7 +136,7 @@ const CategoryFormModal = ({ isOpen, onClose, category }: CategoryFormModalProps
                                                         title="Remove subcategory"
                                                         onClick={() => remove(index)}
                                                         disabled={values.subcategories.length === 1}
-                                                        className="p-2 mt-0.5 rounded hover:bg-bgSecondary text-red-600 hover:text-red-700 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
+                                                        className="p-2 mt-0.5 hover:bg-bgSecondary text-red-600 hover:text-red-700 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
                                                     >
                                                         <Trash2 className="h-4 w-4" />
                                                     </button>

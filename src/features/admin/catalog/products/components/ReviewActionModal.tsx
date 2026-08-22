@@ -74,7 +74,7 @@ const ReviewActionModal = ({ isOpen, onClose, productId, mode }: ReviewActionMod
                         onChange={(e) => setText(e.target.value)}
                         onBlur={() => setTouched(true)}
                         placeholder={copy.placeholder}
-                        className={`block w-full px-3 py-2 border rounded-lg focus:outline-none text-textTertiary placeholder-borderLight ${hasError ? "border-red-500" : "border-borderLight"}`}
+                        className={`block w-full px-3 py-2 border focus:outline-none text-textTertiary placeholder-borderLight ${hasError ? "border-red-500" : "border-borderLight"}`}
                     />
                     {hasError && <p className="text-xs text-red-600 mt-1">{copy.emptyError}</p>}
                 </div>

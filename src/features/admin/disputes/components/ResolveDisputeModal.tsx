@@ -60,7 +60,7 @@ const ResolveDisputeModal = ({ isOpen, onClose, dispute }: ResolveDisputeModalPr
     return (
         <Modal isOpen={isOpen} onClose={handleClose} title="Resolve Dispute" size="sm">
             <div className="space-y-4">
-                <div className="bg-bgSecondary rounded-lg p-3 text-sm">
+                <div className="bg-bgSecondary p-3 text-sm">
                     <p className="font-medium text-textPrimary">{dispute.description}</p>
                 </div>
 
@@ -88,7 +88,7 @@ const ResolveDisputeModal = ({ isOpen, onClose, dispute }: ResolveDisputeModalPr
                         id="resolutionNotes" name="resolutionNotes" rows={3}
                         value={resolutionNotes} onChange={(e) => setResolutionNotes(e.target.value)}
                         placeholder="Explain the decision"
-                        className={`block w-full px-3 py-2 border rounded-lg focus:outline-none duration-200 text-textTertiary placeholder-borderLight ${touched && !isNotesValid ? "border-red-500" : "border-borderLight"
+                        className={`block w-full px-3 py-2 border focus:outline-none duration-200 text-textTertiary placeholder-borderLight ${touched && !isNotesValid ? "border-red-500" : "border-borderLight"
                             }`}
                     />
                     {touched && !isNotesValid && <p className="text-xs text-red-600 mt-1">Resolution notes are required</p>}
