@@ -12,6 +12,7 @@ import PayoutsPage from "../payouts/pages/PayoutsPage";
 import PlatformSettingsPage from "../settings/pages/PlatformSettingsPage";
 import NotificationTemplatesPage from "../notification-templates/pages/NotificationTemplatesPage";
 import DisputesPage from "../disputes/pages/DisputesPage";
+import AuditLogPage from "../audit-log/pages/AuditLogPage";
 
 export const adminRoutes: RouteObject[] = [
     {
@@ -57,5 +58,9 @@ export const adminRoutes: RouteObject[] = [
     {
         path: "/admin/disputes",
         element: <RoleGuard allowedRoles={[UserRole.SUPER_ADMIN]}><DisputesPage /></RoleGuard>,
+    },
+    {
+        path: "/admin/audit-log",
+        element: <RoleGuard allowedRoles={[UserRole.SUPER_ADMIN]}><AuditLogPage /></RoleGuard>,
     },
 ];

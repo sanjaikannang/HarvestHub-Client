@@ -1,7 +1,5 @@
 // Roles derived from HarvestHub-Server/database/users.md and modules/01-auth-user-management.
-// SUPER_ADMIN, DISTRICT_ADMIN and INSPECTOR are "thin" roles with no dashboard built yet
-// (see the server's src/utils/enum.ts comment) — only SUPER_ADMIN/FARMER/BUYER/DELIVERY_PARTNER
-// have a working feature module + dashboard on the client today.
+// Every role now has a working feature module + dashboard on the client.
 export enum UserRole {
     SUPER_ADMIN = "SUPER_ADMIN",
     DISTRICT_ADMIN = "DISTRICT_ADMIN",

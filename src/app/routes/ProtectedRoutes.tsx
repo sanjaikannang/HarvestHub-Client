@@ -6,6 +6,7 @@ import { farmerRoutes } from "../../features/farmer/routes/farmerRoutes";
 import { buyerRoutes } from "../../features/buyer/routes/buyerRoutes";
 import { deliveryPartnerRoutes } from "../../features/delivery-partner/routes/deliveryPartnerRoutes";
 import { inspectorRoutes } from "../../features/inspector/routes/inspectorRoutes";
+import { districtAdminRoutes } from "../../features/district-admin/routes/districtAdminRoutes";
 
 const ProtectedRootLayout = withAuthGuard(RootLayout);
 
@@ -18,6 +19,7 @@ export const protectedRoutes: RouteObject[] = [
             ...buyerRoutes,
             ...deliveryPartnerRoutes,
             ...inspectorRoutes,
+            ...districtAdminRoutes,
         ],
     },
 ];

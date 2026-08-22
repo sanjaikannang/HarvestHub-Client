@@ -18,6 +18,8 @@ import { district } from "./district.api";
 import { notification } from "./notification.api";
 import { notificationTemplate } from "./notification-template.api";
 import { dispute } from "./dispute.api";
+import { dashboard } from "./dashboard.api";
+import { auditLog } from "./audit-log.api";
 
 export const api = {
     auth,
@@ -40,4 +42,6 @@ export const api = {
     notification,
     notificationTemplate,
     dispute,
+    dashboard,
+    auditLog,
 };

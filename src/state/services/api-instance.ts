@@ -43,5 +43,8 @@ export const apiInstance = createApi({
         "my-disputes",
         "disputes",
         "dispute",
+        "super-admin-dashboard",
+        "district-admin-dashboard",
+        "audit-logs",
     ],
 });

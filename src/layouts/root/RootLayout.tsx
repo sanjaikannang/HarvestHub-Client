@@ -25,6 +25,7 @@ const adminNavItems: NavigationItem[] = [
     { id: "settings", label: "Settings", path: "/admin/settings", icon: Settings },
     { id: "notification-templates", label: "Notification Templates", path: "/admin/notification-templates", icon: MessageSquareText },
     { id: "disputes", label: "Disputes", path: "/admin/disputes", icon: ShieldAlert },
+    { id: "audit-log", label: "Audit Log", path: "/admin/audit-log", icon: ClipboardList },
     { id: "profile", label: "Profile", path: "/admin/profile", icon: User },
 ];
 
@@ -58,12 +59,18 @@ const inspectorNavItems: NavigationItem[] = [
     { id: "profile", label: "Profile", path: "/inspector/profile", icon: User },
 ];
 
+const districtAdminNavItems: NavigationItem[] = [
+    { id: "dashboard", label: "Dashboard", path: "/district-admin/dashboard", icon: Home },
+    { id: "audit-log", label: "Audit Log", path: "/district-admin/audit-log", icon: ClipboardList },
+];
+
 const navigationItemsByRole: Record<string, NavigationItem[]> = {
     [UserRole.SUPER_ADMIN]: adminNavItems,
     [UserRole.FARMER]: farmerNavItems,
     [UserRole.BUYER]: buyerNavItems,
     [UserRole.DELIVERY_PARTNER]: deliveryPartnerNavItems,
     [UserRole.INSPECTOR]: inspectorNavItems,
+    [UserRole.DISTRICT_ADMIN]: districtAdminNavItems,
 };
 
 export interface RootLayoutContext {
