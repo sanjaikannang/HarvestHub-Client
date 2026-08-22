@@ -3,7 +3,7 @@ import { UserRole } from "../../utils/enum";
 import { useLogout } from "../../features/auth/logout/useLogout";
 import { getItemFromStorage } from "../../utils/storage";
 import { Outlet, useLocation, Link } from "react-router-dom";
-import { LogOut, Home, type LucideIcon, User, Sprout, Tags, ClipboardCheck, Package, ClipboardList, Warehouse, ShoppingBasket, Gavel, Wallet, ReceiptText, Settings, Truck, MessageSquareText } from "lucide-react";
+import { LogOut, Home, type LucideIcon, User, Sprout, Tags, ClipboardCheck, Package, ClipboardList, Warehouse, ShoppingBasket, Gavel, Wallet, ReceiptText, Settings, Truck, MessageSquareText, ShieldAlert } from "lucide-react";
 import NotificationBell from "../../features/common/notifications/components/NotificationBell";
 
 interface NavigationItem {
@@ -24,6 +24,7 @@ const adminNavItems: NavigationItem[] = [
     { id: "payouts", label: "Payouts", path: "/admin/payouts", icon: Wallet },
     { id: "settings", label: "Settings", path: "/admin/settings", icon: Settings },
     { id: "notification-templates", label: "Notification Templates", path: "/admin/notification-templates", icon: MessageSquareText },
+    { id: "disputes", label: "Disputes", path: "/admin/disputes", icon: ShieldAlert },
     { id: "profile", label: "Profile", path: "/admin/profile", icon: User },
 ];
 
@@ -41,6 +42,7 @@ const buyerNavItems: NavigationItem[] = [
     { id: "bids", label: "My Bids", path: "/buyer/bids", icon: Gavel },
     { id: "payments", label: "My Payments", path: "/buyer/payments", icon: Wallet },
     { id: "orders", label: "My Orders", path: "/buyer/orders", icon: ReceiptText },
+    { id: "disputes", label: "My Disputes", path: "/buyer/disputes", icon: ShieldAlert },
     { id: "profile", label: "Profile", path: "/buyer/profile", icon: User },
 ];
 

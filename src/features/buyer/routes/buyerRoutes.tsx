@@ -8,6 +8,7 @@ import ProductBiddingPage from "../marketplace/pages/ProductBiddingPage";
 import MyBidsPage from "../bids/pages/MyBidsPage";
 import MyPaymentsPage from "../payments/pages/MyPaymentsPage";
 import MyOrdersPage from "../orders/pages/MyOrdersPage";
+import MyDisputesPage from "../disputes/pages/MyDisputesPage";
 
 export const buyerRoutes: RouteObject[] = [
     {
@@ -37,5 +38,9 @@ export const buyerRoutes: RouteObject[] = [
     {
         path: "/buyer/orders",
         element: <RoleGuard allowedRoles={[UserRole.BUYER]}><MyOrdersPage /></RoleGuard>,
+    },
+    {
+        path: "/buyer/disputes",
+        element: <RoleGuard allowedRoles={[UserRole.BUYER]}><MyDisputesPage /></RoleGuard>,
     },
 ];

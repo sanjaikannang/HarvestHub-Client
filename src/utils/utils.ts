@@ -64,6 +64,10 @@ const CHIP_VARIANTS: Record<string, ChipVariant> = {
     SMS: "purple",
     PUSH: "indigo",
     EMAIL: "gray",
+    RAISED: "yellow",
+    RESOLVED_REFUND: "green",
+    RESOLVED_REJECTED: "red",
+    ESCALATED: "orange",
 };
 
 export const getChipVariant = (value: string): ChipVariant => {

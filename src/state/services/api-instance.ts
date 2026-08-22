@@ -40,5 +40,8 @@ export const apiInstance = createApi({
         "my-notifications",
         "unread-count",
         "notification-templates",
+        "my-disputes",
+        "disputes",
+        "dispute",
     ],
 });

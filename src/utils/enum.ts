@@ -150,3 +150,18 @@ export enum DeliveryStatus {
     OUT_FOR_DELIVERY = "out_for_delivery",
     DELIVERED = "delivered",
 }
+
+// database/disputes.md
+export enum DisputeReason {
+    QUALITY_ISSUE = "quality_issue",
+    QUANTITY_MISMATCH = "quantity_mismatch",
+    DAMAGED_IN_TRANSIT = "damaged_in_transit",
+}
+
+export enum DisputeStatus {
+    RAISED = "raised",
+    UNDER_REVIEW = "under_review",
+    RESOLVED_REFUND = "resolved_refund",
+    RESOLVED_REJECTED = "resolved_rejected",
+    ESCALATED = "escalated",
+}

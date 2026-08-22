@@ -17,6 +17,7 @@ import { platformSettings } from "./platform-settings.api";
 import { district } from "./district.api";
 import { notification } from "./notification.api";
 import { notificationTemplate } from "./notification-template.api";
+import { dispute } from "./dispute.api";
 
 export const api = {
     auth,
@@ -38,4 +39,5 @@ export const api = {
     district,
     notification,
     notificationTemplate,
+    dispute,
 };
