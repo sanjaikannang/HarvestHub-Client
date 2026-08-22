@@ -91,3 +91,14 @@ export enum AdminDecision {
     REJECTED = "rejected",
     CHANGES_REQUESTED = "changes_requested",
 }
+
+// database/collection-center-inventory.md — only in_storage/reserved_for_sale/
+// dispatched are written today (Inspection module 04 + this module, 05);
+// reservation is normally automatic on a successful sale + payment (Bidding
+// Engine 06 / Payment Escrow 07, neither built) — exposed as a manual admin
+// action until then.
+export enum InventoryStatus {
+    IN_STORAGE = "in_storage",
+    RESERVED_FOR_SALE = "reserved_for_sale",
+    DISPATCHED = "dispatched",
+}

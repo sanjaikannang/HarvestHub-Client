@@ -21,6 +21,8 @@ export const apiInstance = createApi({
         "my-inspections",
         "inspection",
         "inspectors",
+        "delivery-partners",
         "collection-centers",
+        "inventory",
     ],
 });

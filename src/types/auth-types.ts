@@ -114,3 +114,35 @@ export interface ListInspectorsResponse {
     message: string;
     data?: InspectorSummary[];
 }
+
+export interface CreateDeliveryPartnerRequest {
+    name: string;
+    phone: string;
+    email?: string;
+    password: string;
+}
+
+export interface CreateDeliveryPartnerResponse {
+    success: boolean;
+    message: string;
+    data?: {
+        id: string;
+        name: string;
+        phone: string;
+        email?: string;
+        role: string;
+    };
+}
+
+export interface DeliveryPartnerSummary {
+    id: string;
+    name: string;
+    phone: string;
+    email?: string;
+}
+
+export interface ListDeliveryPartnersResponse {
+    success: boolean;
+    message: string;
+    data?: DeliveryPartnerSummary[];
+}

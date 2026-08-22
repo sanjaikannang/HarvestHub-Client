@@ -8,6 +8,7 @@ import { category } from "./category.api";
 import { product } from "./product.api";
 import { inspection } from "./inspection.api";
 import { collectionCenter } from "./collection-center.api";
+import { collectionCenterInventory } from "./collection-center-inventory.api";
 
 export const api = {
     auth,
@@ -20,4 +21,5 @@ export const api = {
     product,
     inspection,
     collectionCenter,
+    collectionCenterInventory,
 };

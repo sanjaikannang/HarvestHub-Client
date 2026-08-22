@@ -33,6 +33,14 @@ to HarvestHub's own domain and roles.
   recommendation); Super Admin inspections queue
   (`features/admin/inspections/`) with a decide modal (approve — picks a
   receiving Collection Center — reject, or request changes).
+- **Collection Center Management (05)** — `features/admin/inventory/`: an
+  inventory table (product/collection-center names resolved client-side) with
+  Reserve-for-Sale and Dispatch actions, plus an inline "Add Delivery
+  Partner" modal (there was no client UI to create Inspector *or* Delivery
+  Partner accounts before this — the delivery-partner one is built now since
+  Dispatch needs real accounts to assign to; Inspector creation is still
+  server-only, since that endpoint is District-Admin-only and there's no
+  District Admin portal to host it in).
 - **Design system** (`src/common/ui/`) — Button, Modal, Input (incl. `date`/
   `time` types), Select, Table, Chip, Accordion, DeleteConfirmModal,
   RowActions, CountdownTimer, Container, PageHeader, ImageUrlListField — all

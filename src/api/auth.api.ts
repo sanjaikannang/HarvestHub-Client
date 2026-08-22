@@ -7,4 +7,6 @@ export const auth = {
     resetPassword: () => "/auth/reset-password",
     createInspector: () => "/auth/create-inspector",
     listInspectors: () => "/auth/inspectors",
+    createDeliveryPartner: () => "/auth/create-delivery-partner",
+    listDeliveryPartners: () => "/auth/delivery-partners",
 };

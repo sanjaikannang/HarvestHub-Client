@@ -3,7 +3,7 @@ import { UserRole } from "../../utils/enum";
 import { useLogout } from "../../features/auth/logout/useLogout";
 import { getItemFromStorage } from "../../utils/storage";
 import { Outlet, useLocation, Link } from "react-router-dom";
-import { LogOut, Home, type LucideIcon, User, Sprout, Tags, ClipboardCheck, Package, ClipboardList } from "lucide-react";
+import { LogOut, Home, type LucideIcon, User, Sprout, Tags, ClipboardCheck, Package, ClipboardList, Warehouse } from "lucide-react";
 
 interface NavigationItem {
     id: string;
@@ -18,6 +18,7 @@ const adminNavItems: NavigationItem[] = [
     { id: "categories", label: "Categories", path: "/admin/catalog/categories", icon: Tags },
     { id: "products", label: "Product Review", path: "/admin/catalog/products", icon: ClipboardCheck },
     { id: "inspections", label: "Inspections", path: "/admin/inspections", icon: ClipboardList },
+    { id: "inventory", label: "Inventory", path: "/admin/inventory", icon: Warehouse },
     { id: "profile", label: "Profile", path: "/admin/profile", icon: User },
 ];
 

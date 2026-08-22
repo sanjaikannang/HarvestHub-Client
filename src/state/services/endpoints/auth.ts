@@ -15,6 +15,9 @@ import {
     CreateInspectorRequest,
     CreateInspectorResponse,
     ListInspectorsResponse,
+    CreateDeliveryPartnerRequest,
+    CreateDeliveryPartnerResponse,
+    ListDeliveryPartnersResponse,
 } from "../../../types/auth-types";
 
 export const authApiService = apiInstance.injectEndpoints({
@@ -88,6 +91,21 @@ export const authApiService = apiInstance.injectEndpoints({
             }),
             providesTags: ["inspectors"],
         }),
+        createDeliveryPartner: build.mutation<CreateDeliveryPartnerResponse, CreateDeliveryPartnerRequest>({
+            query: (data) => ({
+                url: api.auth.createDeliveryPartner(),
+                method: "POST",
+                data,
+            }),
+            invalidatesTags: ["delivery-partners"],
+        }),
+        listDeliveryPartners: build.query<ListDeliveryPartnersResponse, void>({
+            query: () => ({
+                url: api.auth.listDeliveryPartners(),
+                method: "GET",
+            }),
+            providesTags: ["delivery-partners"],
+        }),
     }),
 });
 
@@ -100,4 +118,6 @@ export const {
     useResetPasswordMutation,
     useCreateInspectorMutation,
     useListInspectorsQuery,
+    useCreateDeliveryPartnerMutation,
+    useListDeliveryPartnersQuery,
 } = authApiService;
