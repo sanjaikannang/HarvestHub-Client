@@ -9,6 +9,7 @@ import { product } from "./product.api";
 import { inspection } from "./inspection.api";
 import { collectionCenter } from "./collection-center.api";
 import { collectionCenterInventory } from "./collection-center-inventory.api";
+import { bidding } from "./bidding.api";
 
 export const api = {
     auth,
@@ -22,4 +23,5 @@ export const api = {
     inspection,
     collectionCenter,
     collectionCenterInventory,
+    bidding,
 };

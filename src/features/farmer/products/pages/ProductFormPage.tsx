@@ -12,6 +12,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { formatEnumLabel, getChipVariant, toEnumOptions } from "../../../../utils/utils";
 import { productValidationSchema } from "../formik/product.schema";
 import ImageUrlListField from "../../../../common/ui/ImageUrlListField";
+import BiddingSessionPanel from "../../../bidding/components/BiddingSessionPanel";
 import { useListCategoriesQuery } from "../../../../state/services/endpoints/category";
 import { useCreateProductMutation, useGetProductQuery, useUpdateProductMutation } from "../../../../state/services/endpoints/product";
 
@@ -19,6 +20,11 @@ import { useCreateProductMutation, useGetProductQuery, useUpdateProductMutation 
 // (see modules/03-catalog-management/requirement.md) — mirrors the server's
 // EDITABLE_STATUSES in src/services/product-service/product.service.ts.
 const EDITABLE_STATUSES = [ProductStatus.SUBMITTED, ProductStatus.UNDER_REVIEW, ProductStatus.CHANGES_REQUESTED, ProductStatus.REJECTED];
+
+// Once a product has a (potential) bidding session, show it read-only so the
+// Farmer can watch their own sale — requirement.md: "Farmer views live status
+// of their own product's session, read-only".
+const BIDDING_RELEVANT_STATUSES = [ProductStatus.LISTED, ProductStatus.BIDDING_LIVE, ProductStatus.SOLD, ProductStatus.UNSOLD];
 
 const collectionMethodOptions = toEnumOptions(CollectionMethod);
 const unitOfMeasureOptions = toEnumOptions(UnitOfMeasure);
@@ -153,6 +159,10 @@ const ProductFormPage = () => {
                             <p className="text-xs font-medium text-orange-700">Changes Requested</p>
                             <p className="text-sm text-orange-700">{product.changeRequestNotes}</p>
                         </div>
+                    )}
+
+                    {product && BIDDING_RELEVANT_STATUSES.includes(product.status) && (
+                        <BiddingSessionPanel product={product} canBid={false} />
                     )}
 
                     <Formik

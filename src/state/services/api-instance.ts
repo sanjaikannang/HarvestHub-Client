@@ -24,5 +24,9 @@ export const apiInstance = createApi({
         "delivery-partners",
         "collection-centers",
         "inventory",
+        "marketplace-products",
+        "bidding-session",
+        "bid-history",
+        "my-bids",
     ],
 });

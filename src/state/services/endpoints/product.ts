@@ -34,6 +34,13 @@ export const productApiService = apiInstance.injectEndpoints({
             }),
             providesTags: ["products-for-review"],
         }),
+        listMarketplace: build.query<ListProductsResponse, void>({
+            query: () => ({
+                url: api.product.listMarketplace(),
+                method: "GET",
+            }),
+            providesTags: ["marketplace-products"],
+        }),
         createProduct: build.mutation<ProductResponse, ProductSubmissionData>({
             query: (data) => ({
                 url: api.product.create(),
@@ -80,6 +87,7 @@ export const {
     useListMyProductsQuery,
     useGetProductQuery,
     useListProductsForReviewQuery,
+    useListMarketplaceQuery,
     useCreateProductMutation,
     useUpdateProductMutation,
     useStartReviewMutation,

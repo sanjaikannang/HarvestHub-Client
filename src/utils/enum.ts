@@ -102,3 +102,15 @@ export enum InventoryStatus {
     RESERVED_FOR_SALE = "reserved_for_sale",
     DISPATCHED = "dispatched",
 }
+
+// database/bidding-sessions.md
+export enum BiddingSessionStatus {
+    SCHEDULED = "scheduled",
+    LIVE = "live",
+    ENDED = "ended",
+}
+
+export enum BiddingOutcome {
+    SOLD = "sold",
+    UNSOLD = "unsold",
+}

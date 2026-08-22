@@ -3,7 +3,7 @@ import { UserRole } from "../../utils/enum";
 import { useLogout } from "../../features/auth/logout/useLogout";
 import { getItemFromStorage } from "../../utils/storage";
 import { Outlet, useLocation, Link } from "react-router-dom";
-import { LogOut, Home, type LucideIcon, User, Sprout, Tags, ClipboardCheck, Package, ClipboardList, Warehouse } from "lucide-react";
+import { LogOut, Home, type LucideIcon, User, Sprout, Tags, ClipboardCheck, Package, ClipboardList, Warehouse, ShoppingBasket, Gavel } from "lucide-react";
 
 interface NavigationItem {
     id: string;
@@ -30,6 +30,8 @@ const farmerNavItems: NavigationItem[] = [
 
 const buyerNavItems: NavigationItem[] = [
     { id: "dashboard", label: "Dashboard", path: "/buyer/dashboard", icon: Home },
+    { id: "marketplace", label: "Marketplace", path: "/buyer/marketplace", icon: ShoppingBasket, matchPattern: "/buyer/marketplace" },
+    { id: "bids", label: "My Bids", path: "/buyer/bids", icon: Gavel },
     { id: "profile", label: "Profile", path: "/buyer/profile", icon: User },
 ];
 
