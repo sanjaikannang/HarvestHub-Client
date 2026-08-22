@@ -37,5 +37,8 @@ export const apiInstance = createApi({
         "payouts",
         "platform-settings",
         "districts",
+        "my-notifications",
+        "unread-count",
+        "notification-templates",
     ],
 });

@@ -15,6 +15,8 @@ import { order } from "./order.api";
 import { payout } from "./payout.api";
 import { platformSettings } from "./platform-settings.api";
 import { district } from "./district.api";
+import { notification } from "./notification.api";
+import { notificationTemplate } from "./notification-template.api";
 
 export const api = {
     auth,
@@ -34,4 +36,6 @@ export const api = {
     payout,
     platformSettings,
     district,
+    notification,
+    notificationTemplate,
 };

@@ -3,7 +3,8 @@ import { UserRole } from "../../utils/enum";
 import { useLogout } from "../../features/auth/logout/useLogout";
 import { getItemFromStorage } from "../../utils/storage";
 import { Outlet, useLocation, Link } from "react-router-dom";
-import { LogOut, Home, type LucideIcon, User, Sprout, Tags, ClipboardCheck, Package, ClipboardList, Warehouse, ShoppingBasket, Gavel, Wallet, ReceiptText, Settings, Truck } from "lucide-react";
+import { LogOut, Home, type LucideIcon, User, Sprout, Tags, ClipboardCheck, Package, ClipboardList, Warehouse, ShoppingBasket, Gavel, Wallet, ReceiptText, Settings, Truck, MessageSquareText } from "lucide-react";
+import NotificationBell from "../../features/common/notifications/components/NotificationBell";
 
 interface NavigationItem {
     id: string;
@@ -22,6 +23,7 @@ const adminNavItems: NavigationItem[] = [
     { id: "orders", label: "Orders", path: "/admin/orders", icon: Truck },
     { id: "payouts", label: "Payouts", path: "/admin/payouts", icon: Wallet },
     { id: "settings", label: "Settings", path: "/admin/settings", icon: Settings },
+    { id: "notification-templates", label: "Notification Templates", path: "/admin/notification-templates", icon: MessageSquareText },
     { id: "profile", label: "Profile", path: "/admin/profile", icon: User },
 ];
 
@@ -140,6 +142,8 @@ export function RootLayout() {
                 <div className="flex-1 flex flex-col min-w-0">
                     <header className="h-16 bg-whiteColor border-b border-borderLight flex items-center justify-end px-6 flex-shrink-0 shadow-sm">
                         <div className="flex items-center gap-4">
+                            <NotificationBell />
+
                             <div className="flex flex-col text-right">
                                 <span className="text-xs font-medium text-textSecondary">
                                     {userData?.name || userData?.email || userData?.phone}

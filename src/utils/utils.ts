@@ -60,6 +60,10 @@ const CHIP_VARIANTS: Record<string, ChipVariant> = {
     AVAILABLE: "green",
     BUSY: "yellow",
     OFFLINE: "gray",
+    IN_APP: "blue",
+    SMS: "purple",
+    PUSH: "indigo",
+    EMAIL: "gray",
 };
 
 export const getChipVariant = (value: string): ChipVariant => {

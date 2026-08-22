@@ -10,6 +10,7 @@ import InventoryPage from "../inventory/pages/InventoryPage";
 import OrdersPage from "../orders/pages/OrdersPage";
 import PayoutsPage from "../payouts/pages/PayoutsPage";
 import PlatformSettingsPage from "../settings/pages/PlatformSettingsPage";
+import NotificationTemplatesPage from "../notification-templates/pages/NotificationTemplatesPage";
 
 export const adminRoutes: RouteObject[] = [
     {
@@ -47,5 +48,9 @@ export const adminRoutes: RouteObject[] = [
     {
         path: "/admin/settings",
         element: <RoleGuard allowedRoles={[UserRole.SUPER_ADMIN]}><PlatformSettingsPage /></RoleGuard>,
+    },
+    {
+        path: "/admin/notification-templates",
+        element: <RoleGuard allowedRoles={[UserRole.SUPER_ADMIN]}><NotificationTemplatesPage /></RoleGuard>,
     },
 ];
