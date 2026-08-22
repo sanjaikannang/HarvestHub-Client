@@ -46,7 +46,7 @@ interface AccordionProps {
 
 export function Accordion({ children }: AccordionProps) {
     return (
-        <div className="rounded-md border border-borderLight divide-y divide-borderLight overflow-hidden">
+        <div className=" border border-borderLight divide-y divide-borderLight overflow-hidden">
             {children}
         </div>
     );

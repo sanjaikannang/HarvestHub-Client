@@ -69,7 +69,7 @@ const InputField: React.FC<InputFieldProps> = ({
                         onBlur={onBlur}
                         disabled={disabled}
                         className={`block w-full ${Icon ? 'pl-10' : 'pl-3'} ${isPasswordField ? 'pr-12' : 'pr-3'} py-2 border ${hasError ? 'border-red-500' : 'border-borderLight'
-                            } rounded-lg focus:outline-none duration-200 text-textTertiary placeholder-borderLight disabled:bg-borderLight disabled:cursor-not-allowed`}
+                            } focus:outline-none duration-200 text-textTertiary placeholder-borderLight disabled:bg-borderLight disabled:cursor-not-allowed`}
                         placeholder={placeholder}
                     />
                     {isPasswordField && (

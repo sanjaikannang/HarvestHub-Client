@@ -71,7 +71,7 @@ const BiddingSessionPanel = ({ product, canBid }: BiddingSessionPanelProps) => {
 
     if (sessionNotStarted || !session) {
         return (
-            <div className="bg-whiteColor rounded-xl border border-borderLight p-6">
+            <div className="bg-whiteColor border border-borderLight p-6">
                 <p className="text-sm text-textSecondary">
                     Bidding hasn't started yet — scheduled for{" "}
                     <span className="font-medium text-textPrimary">{formatDateTime(product.biddingStartTime)}</span>.
@@ -83,7 +83,7 @@ const BiddingSessionPanel = ({ product, canBid }: BiddingSessionPanelProps) => {
     const remainingMs = new Date(session.currentEndTime).getTime() - now;
 
     return (
-        <div className="bg-whiteColor rounded-xl border border-borderLight p-6 space-y-4">
+        <div className="bg-whiteColor border border-borderLight p-6 space-y-4">
             <div className="flex items-center justify-between flex-wrap gap-2">
                 <Chip label={formatEnumLabel(session.status)} variant={getChipVariant(session.status)} />
                 {session.status === BiddingSessionStatus.LIVE && (
@@ -111,7 +111,7 @@ const BiddingSessionPanel = ({ product, canBid }: BiddingSessionPanelProps) => {
             </div>
 
             {session.status === BiddingSessionStatus.ENDED && (
-                <div className={`p-3 rounded-lg border ${session.outcome === "sold" ? "bg-green-50 border-green-100" : "bg-gray-50 border-gray-200"}`}>
+                <div className={`p-3 border ${session.outcome === "sold" ? "bg-green-50 border-green-100" : "bg-gray-50 border-gray-200"}`}>
                     <p className="text-sm font-medium text-textPrimary">
                         {session.outcome === "sold"
                             ? `Sold for ₹${session.winningBidAmount}${session.winnerId === currentUserId ? " — you won!" : ""}`
@@ -143,7 +143,7 @@ const BiddingSessionPanel = ({ product, canBid }: BiddingSessionPanelProps) => {
                     <p className="text-sm font-medium text-textPrimary mb-2">Bid History</p>
                     <div className="space-y-1 max-h-48 overflow-y-auto">
                         {bids.map((bid) => (
-                            <div key={bid.id} className="flex items-center justify-between text-sm px-3 py-2 rounded-lg bg-bgSecondary">
+                            <div key={bid.id} className="flex items-center justify-between text-sm px-3 py-2 bg-bgSecondary">
                                 <span className="text-textPrimary">
                                     {bid.buyerId === currentUserId ? "You" : `Buyer ${bid.buyerId.slice(-6)}`}
                                 </span>

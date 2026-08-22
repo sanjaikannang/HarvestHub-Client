@@ -18,7 +18,7 @@ const variantStyles: Record<ChipVariant, string> = {
 
 const Chip = ({ label, variant = "gray" }: ChipProps) => (
     <span
-        className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap ${variantStyles[variant]}`}
+        className={`inline-flex items-center px-2.5 py-1 text-xs font-medium whitespace-nowrap ${variantStyles[variant]}`}
     >
         {label}
     </span>

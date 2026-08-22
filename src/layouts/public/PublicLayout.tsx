@@ -19,7 +19,7 @@ const PublicLayout = () => {
                                 <LanguageSwitcher />
                                 <Link
                                     to="/login"
-                                    className="px-4 py-1 bg-primary text-whiteColor rounded-lg hover:scale-105 transition-transform"
+                                    className="px-4 py-1 bg-primary text-whiteColor hover:scale-105 transition-transform"
                                 >
                                     {t("landing.login")}
                                 </Link>

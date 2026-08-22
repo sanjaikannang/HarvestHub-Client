@@ -127,7 +127,7 @@ export function RootLayout() {
                                 <Link
                                     key={item.id}
                                     to={item.path}
-                                    className={`flex items-center gap-3 px-4 py-2 rounded-lg transition-colors ${isActive
+                                    className={`flex items-center gap-3 px-4 py-2 transition-colors ${isActive
                                         ? "bg-primaryLighter text-primary"
                                         : "text-textSecondary hover:bg-bgTertiary"
                                         }`}
@@ -166,7 +166,7 @@ export function RootLayout() {
                                 </span>
                             </div>
 
-                            <div className="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-whiteColor font-semibold">
+                            <div className="w-8 h-8 bg-primary flex items-center justify-center text-whiteColor font-semibold">
                                 {roleInitial}
                             </div>
                         </div>

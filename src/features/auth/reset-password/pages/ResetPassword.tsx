@@ -17,7 +17,7 @@ const ResetPassword = () => {
 
     return (
         <div className="h-screen bg-gradient-to-br from-primaryLighter via-white to-primaryLighter flex items-center justify-center p-4">
-            <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden">
+            <div className="w-full max-w-md bg-white shadow-2xl overflow-hidden">
                 <div className="p-8 lg:p-12">
                     <div className="mb-8 text-center">
                         <h2 className="text-xl font-semibold text-neutral-900 mb-2">Set a new password</h2>

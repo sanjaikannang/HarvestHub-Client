@@ -148,14 +148,14 @@ const ProductFormPage = () => {
                     )}
 
                     {product?.rejectionReason && (
-                        <div className="p-3 rounded-lg bg-red-50 border border-red-100">
+                        <div className="p-3 bg-red-50 border border-red-100">
                             <p className="text-xs font-medium text-red-700">Rejection Reason</p>
                             <p className="text-sm text-red-700">{product.rejectionReason}</p>
                         </div>
                     )}
 
                     {product?.changeRequestNotes && (
-                        <div className="p-3 rounded-lg bg-orange-50 border border-orange-100">
+                        <div className="p-3 bg-orange-50 border border-orange-100">
                             <p className="text-xs font-medium text-orange-700">Changes Requested</p>
                             <p className="text-sm text-orange-700">{product.changeRequestNotes}</p>
                         </div>
@@ -192,7 +192,7 @@ const ProductFormPage = () => {
                                                 name="description" rows={3} disabled={isReadOnly}
                                                 value={values.description} onChange={handleChange} onBlur={handleBlur}
                                                 placeholder="Describe your produce — freshness, harvest date, quality, etc."
-                                                className={`block w-full px-3 py-2 border rounded-lg focus:outline-none text-textTertiary placeholder-borderLight disabled:bg-borderLight disabled:cursor-not-allowed ${touched.description && errors.description ? "border-red-500" : "border-borderLight"}`}
+                                                className={`block w-full px-3 py-2 border focus:outline-none text-textTertiary placeholder-borderLight disabled:bg-borderLight disabled:cursor-not-allowed ${touched.description && errors.description ? "border-red-500" : "border-borderLight"}`}
                                             />
                                             {touched.description && errors.description && (
                                                 <p className="text-xs text-red-600 mt-1">{errors.description}</p>

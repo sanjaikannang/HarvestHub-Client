@@ -27,7 +27,7 @@ const Button: React.FC<ButtonProps> = ({
     fullWidth = false,
     className = ''
 }) => {
-    const baseStyles = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none disabled:opacity-60 disabled:cursor-not-allowed';
+    const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none disabled:opacity-60 disabled:cursor-not-allowed';
 
     const variantStyles = {
         primary: 'bg-primary text-whiteColor cursor-pointer',
@@ -62,7 +62,7 @@ const Button: React.FC<ButtonProps> = ({
             `}
             >
                 {loading && (
-                    <div className="mr-2 animate-spin rounded-full h-4 w-4 border-2 border-current border-t-transparent"></div>
+                    <div className="mr-2 animate-spin h-4 w-4 border-2 border-current border-t-transparent"></div>
                 )}
 
                 {!loading && Icon && iconPosition === 'left' && (

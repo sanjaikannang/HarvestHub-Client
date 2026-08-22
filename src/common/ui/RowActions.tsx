@@ -6,7 +6,7 @@ interface RowActionsProps {
     onViewActivity?: () => void;
 }
 
-const iconButtonClass = "p-1.5 rounded hover:bg-bgSecondary cursor-pointer transition-colors";
+const iconButtonClass = "p-1.5 hover:bg-bgSecondary cursor-pointer transition-colors";
 
 const RowActions = ({ onEdit, onDelete, onViewActivity }: RowActionsProps) => {
     const stop = (e: React.MouseEvent, handler?: () => void) => {

@@ -35,7 +35,7 @@ export function CountdownTimer({ remainingMs, size = "md", className = "" }: Cou
 
     return (
         <div
-            className={`inline-flex items-center rounded-lg border font-semibold tabular-nums ${colorClasses} ${sizeClasses} ${isCritical ? "animate-pulse" : ""} ${className}`}
+            className={`inline-flex items-center border font-semibold tabular-nums ${colorClasses} ${sizeClasses} ${isCritical ? "animate-pulse" : ""} ${className}`}
             role="timer"
             aria-live={isCritical ? "assertive" : "off"}
         >

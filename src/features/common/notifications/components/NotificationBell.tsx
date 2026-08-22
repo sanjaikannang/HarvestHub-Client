@@ -49,19 +49,19 @@ const NotificationBell = () => {
         <div className="relative" ref={containerRef}>
             <button
                 onClick={() => setIsOpen((prev) => !prev)}
-                className="relative flex items-center justify-center h-9 w-9 rounded-full hover:bg-bgSecondary transition-colors cursor-pointer"
+                className="relative flex items-center justify-center h-9 w-9 hover:bg-bgSecondary transition-colors cursor-pointer"
                 aria-label={t('notifications.title')}
             >
                 <Bell className="w-5 h-5 text-textSecondary" />
                 {unreadCount > 0 && (
-                    <span className="absolute top-0 right-0 flex items-center justify-center h-4 min-w-4 px-1 rounded-full bg-red-500 text-white text-[10px] font-semibold">
+                    <span className="absolute top-0 right-0 flex items-center justify-center h-4 min-w-4 px-1 bg-red-500 text-white text-[10px] font-semibold">
                         {unreadCount > 9 ? "9+" : unreadCount}
                     </span>
                 )}
             </button>
 
             {isOpen && (
-                <div className="absolute right-0 mt-2 w-80 max-h-96 overflow-hidden flex flex-col rounded-xl border border-borderLight bg-whiteColor shadow-lg z-50">
+                <div className="absolute right-0 mt-2 w-80 max-h-96 overflow-hidden flex flex-col border border-borderLight bg-whiteColor shadow-lg z-50">
                     <div className="flex items-center justify-between px-4 py-3 border-b border-borderLight flex-shrink-0">
                         <p className="text-sm font-semibold text-textPrimary">{t('notifications.title')}</p>
                         {unreadCount > 0 && (
@@ -90,7 +90,7 @@ const NotificationBell = () => {
                                         <p className={`text-sm ${notif.isRead ? "text-textSecondary" : "text-textPrimary font-medium"}`}>
                                             {notif.title}
                                         </p>
-                                        {!notif.isRead && <span className="mt-1 h-2 w-2 rounded-full bg-primary flex-shrink-0" />}
+                                        {!notif.isRead && <span className="mt-1 h-2 w-2 bg-primary flex-shrink-0" />}
                                     </div>
                                     <p className="text-xs text-textSecondary mt-1 line-clamp-2">{notif.message}</p>
                                     <p className="text-[11px] text-textTertiary mt-1">{formatDateTime(notif.createdAt)}</p>

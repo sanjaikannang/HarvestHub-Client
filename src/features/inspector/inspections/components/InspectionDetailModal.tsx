@@ -65,7 +65,7 @@ const InspectionDetailModal = ({ isOpen, onClose, inspection }: InspectionDetail
                         {!!inspection.inspectionPhotos?.length && (
                             <div className="flex gap-2 overflow-x-auto mt-2">
                                 {inspection.inspectionPhotos.map((url, i) => (
-                                    <img key={i} src={url} alt={`Inspection ${i + 1}`} className="h-20 w-20 object-cover rounded-lg border border-borderLight flex-shrink-0" />
+                                    <img key={i} src={url} alt={`Inspection ${i + 1}`} className="h-20 w-20 object-cover border border-borderLight flex-shrink-0" />
                                 ))}
                             </div>
                         )}

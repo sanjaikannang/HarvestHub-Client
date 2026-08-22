@@ -51,7 +51,7 @@ const LanguageSwitcher = () => {
         <div className="relative" ref={containerRef}>
             <button
                 onClick={() => setIsOpen((prev) => !prev)}
-                className="flex items-center gap-1.5 h-9 px-2.5 rounded-full hover:bg-bgSecondary transition-colors cursor-pointer text-sm text-textSecondary"
+                className="flex items-center gap-1.5 h-9 px-2.5 hover:bg-bgSecondary transition-colors cursor-pointer text-sm text-textSecondary"
                 aria-label={t("common.language")}
             >
                 <Languages className="w-4 h-4" />
@@ -59,7 +59,7 @@ const LanguageSwitcher = () => {
             </button>
 
             {isOpen && (
-                <div className="absolute right-0 mt-2 w-36 rounded-xl border border-borderLight bg-whiteColor shadow-lg z-50 overflow-hidden">
+                <div className="absolute right-0 mt-2 w-36 border border-borderLight bg-whiteColor shadow-lg z-50 overflow-hidden">
                     {LANGUAGES.map((lang) => (
                         <button
                             key={lang.code}

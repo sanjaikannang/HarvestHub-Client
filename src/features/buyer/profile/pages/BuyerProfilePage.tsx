@@ -22,9 +22,9 @@ const BuyerProfilePage = () => {
             <PageHeader>My Profile</PageHeader>
             <Container>
                 <div className="py-6 max-w-2xl">
-                    <div className="bg-whiteColor rounded-xl border border-borderLight p-6 space-y-4">
+                    <div className="bg-whiteColor border border-borderLight p-6 space-y-4">
                         <div className="flex items-center gap-3 pb-4 border-b border-borderLight">
-                            <div className="w-12 h-12 rounded-full bg-primary text-whiteColor flex items-center justify-center font-semibold text-lg">
+                            <div className="w-12 h-12 bg-primary text-whiteColor flex items-center justify-center font-semibold text-lg">
                                 {profile.name.charAt(0).toUpperCase()}
                             </div>
                             <div>
@@ -59,7 +59,7 @@ const BuyerProfilePage = () => {
                         </div>
 
                         {!profile.isPhoneVerified && (
-                            <p className="text-xs text-warning bg-yellow-50 border border-yellow-200 rounded-md px-3 py-2">
+                            <p className="text-xs text-warning bg-yellow-50 border border-yellow-200 px-3 py-2">
                                 Browsing is open, but verify your phone and add a delivery address before you can place a bid.
                             </p>
                         )}

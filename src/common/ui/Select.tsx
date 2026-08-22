@@ -99,7 +99,7 @@ const Select: React.FC<SelectProps> = ({
                         onClick={handleToggle}
                         onBlur={handleBlur}
                         disabled={disabled || loading}
-                        className={`w-full ${Icon ? 'pl-10' : 'pl-3'} pr-10 py-2 rounded-lg text-left transition-all duration-200`}
+                        className={`w-full ${Icon ? 'pl-10' : 'pl-3'} pr-10 py-2 text-left transition-all duration-200`}
                         style={{
                             backgroundColor: disabled || loading
                                 ? 'var(--color-bgTertiary)'
@@ -126,7 +126,7 @@ const Select: React.FC<SelectProps> = ({
                     <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
                         {loading ? (
                             <div
-                                className="animate-spin rounded-full h-4 w-4 border-2 border-t-transparent"
+                                className="animate-spin h-4 w-4 border-2 border-t-transparent"
                                 style={{ borderColor: 'var(--color-borderDark)' }}
                             />
                         ) : (
@@ -139,7 +139,7 @@ const Select: React.FC<SelectProps> = ({
 
                     {isOpen && !loading && (
                         <div
-                            className="absolute z-50 w-full mt-1 rounded-lg shadow-lg max-h-24 overflow-auto no-scrollbar"
+                            className="absolute z-50 w-full mt-1 shadow-lg max-h-24 overflow-auto no-scrollbar"
                             style={{
                                 backgroundColor: 'var(--color-bgPrimary)',
                                 border: '1px solid var(--color-borderLight)'
@@ -158,7 +158,7 @@ const Select: React.FC<SelectProps> = ({
                                         key={option.value}
                                         type="button"
                                         onClick={() => handleOptionClick(option.value)}
-                                        className="w-full px-4 py-2 text-left cursor-pointer transition-colors duration-150 first:rounded-t-lg last:rounded-b-lg"
+                                        className="w-full px-4 py-2 text-left cursor-pointer transition-colors duration-150 "
                                         style={{
                                             backgroundColor:
                                                 value === option.value

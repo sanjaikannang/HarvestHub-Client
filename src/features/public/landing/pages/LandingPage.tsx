@@ -25,17 +25,17 @@ const LandingPage = () => {
             </section>
 
             <section className="max-w-5xl mx-auto px-6 pb-20 grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div className="bg-whiteColor rounded-xl border border-borderLight p-6 text-center">
+                <div className="bg-whiteColor border border-borderLight p-6 text-center">
                     <Sprout className="w-8 h-8 text-primary mx-auto mb-3" />
                     <h3 className="font-semibold text-textPrimary mb-1">{t("landing.forFarmersTitle")}</h3>
                     <p className="text-sm text-textSecondary">{t("landing.forFarmersDesc")}</p>
                 </div>
-                <div className="bg-whiteColor rounded-xl border border-borderLight p-6 text-center">
+                <div className="bg-whiteColor border border-borderLight p-6 text-center">
                     <ShoppingBasket className="w-8 h-8 text-primary mx-auto mb-3" />
                     <h3 className="font-semibold text-textPrimary mb-1">{t("landing.forBuyersTitle")}</h3>
                     <p className="text-sm text-textSecondary">{t("landing.forBuyersDesc")}</p>
                 </div>
-                <div className="bg-whiteColor rounded-xl border border-borderLight p-6 text-center">
+                <div className="bg-whiteColor border border-borderLight p-6 text-center">
                     <Truck className="w-8 h-8 text-primary mx-auto mb-3" />
                     <h3 className="font-semibold text-textPrimary mb-1">{t("landing.forDeliveryTitle")}</h3>
                     <p className="text-sm text-textSecondary">{t("landing.forDeliveryDesc")}</p>

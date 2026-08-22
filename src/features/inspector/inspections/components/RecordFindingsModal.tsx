@@ -92,7 +92,7 @@ const RecordFindingsModal = ({ isOpen, onClose, inspection }: RecordFindingsModa
                                     name="conditionNotes" rows={3}
                                     value={values.conditionNotes} onChange={handleChange} onBlur={handleBlur}
                                     placeholder="Freshness, sorting needed, damage, etc."
-                                    className="block w-full px-3 py-2 border border-borderLight rounded-lg focus:outline-none text-textTertiary placeholder-borderLight"
+                                    className="block w-full px-3 py-2 border border-borderLight focus:outline-none text-textTertiary placeholder-borderLight"
                                 />
                             </div>
 

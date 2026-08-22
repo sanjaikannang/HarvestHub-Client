@@ -38,7 +38,7 @@ const PlatformSettingsPage = () => {
 
             <Container>
                 <div className="py-6 max-w-sm">
-                    <div className="bg-whiteColor rounded-xl border border-borderLight p-6 space-y-4">
+                    <div className="bg-whiteColor border border-borderLight p-6 space-y-4">
                         <InputField
                             id="commissionPercentage" name="commissionPercentage" type="number"
                             label="Platform Commission (%)" placeholder="5"

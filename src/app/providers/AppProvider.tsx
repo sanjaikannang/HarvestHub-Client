@@ -9,7 +9,7 @@ export function AppProvider({ children }: AppProviderProps) {
     return (
         <Fragment>
             <Provider store={store}>{children}
-                <Toaster />
+                <Toaster toastOptions={{ style: { borderRadius: 0 } }} />
             </Provider>
         </Fragment>
     );
