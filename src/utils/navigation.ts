@@ -22,9 +22,13 @@ export const navigateByUserRole = (
             navigate("/delivery-partner/dashboard", { replace: true });
             break;
 
+        case UserRole.INSPECTOR:
+            navigate("/inspector/dashboard", { replace: true });
+            break;
+
         default:
-            // DISTRICT_ADMIN/INSPECTOR have no dashboard built yet — sending them
-            // back to /login would just bounce off withGuestGuard forever.
+            // DISTRICT_ADMIN has no dashboard built yet — sending it back to
+            // /login would just bounce off withGuestGuard forever.
             navigate("/unauthorized", { replace: true });
     }
 };

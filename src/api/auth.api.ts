@@ -5,4 +5,6 @@ export const auth = {
     changePassword: () => "/auth/change-password",
     forgotPassword: () => "/auth/forgot-password",
     resetPassword: () => "/auth/reset-password",
+    createInspector: () => "/auth/create-inspector",
+    listInspectors: () => "/auth/inspectors",
 };

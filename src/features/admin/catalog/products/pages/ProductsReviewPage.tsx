@@ -14,6 +14,7 @@ import type { Product } from "../../../../../types/catalog-types";
 import { formatEnumLabel, getChipVariant } from "../../../../../utils/utils";
 import { useListCategoriesQuery } from "../../../../../state/services/endpoints/category";
 import { useListProductsForReviewQuery, useStartReviewMutation } from "../../../../../state/services/endpoints/product";
+import ScheduleInspectionModal from "../../../inspections/components/ScheduleInspectionModal";
 
 // Only the statuses this module can actually put a product into — the rest
 // of the lifecycle (inspection_scheduled onward) belongs to modules 04/06.
@@ -31,6 +32,7 @@ const ProductsReviewPage = () => {
     const [statusFilter, setStatusFilter] = useState<ProductStatus | "">("");
     const [viewingProduct, setViewingProduct] = useState<Product | undefined>(undefined);
     const [reviewAction, setReviewAction] = useState<{ productId: string; mode: "request-changes" | "reject" } | undefined>(undefined);
+    const [schedulingFor, setSchedulingFor] = useState<Product | undefined>(undefined);
 
     const { data, isLoading } = useListProductsForReviewQuery(statusFilter ? { status: statusFilter } : undefined);
     const { data: categoriesData } = useListCategoriesQuery();
@@ -62,7 +64,7 @@ const ProductsReviewPage = () => {
         },
         {
             header: "Actions",
-            width: "280px",
+            width: "380px",
             cell: ({ row }) => {
                 const product = row.original;
                 const canReview = REVIEWABLE_STATUSES.includes(product.status);
@@ -77,6 +79,13 @@ const ProductsReviewPage = () => {
                                 Start Review
                             </Button>
                         )}
+                        <Button
+                            variant="outline" size="sm"
+                            disabled={!canReview}
+                            onClick={(e) => { e.stopPropagation(); setSchedulingFor(product); }}
+                        >
+                            Schedule Inspection
+                        </Button>
                         <Button
                             variant="outline" size="sm"
                             disabled={!canReview}
@@ -140,6 +149,14 @@ const ProductsReviewPage = () => {
                     onClose={() => setReviewAction(undefined)}
                     productId={reviewAction.productId}
                     mode={reviewAction.mode}
+                />
+            )}
+
+            {schedulingFor && (
+                <ScheduleInspectionModal
+                    isOpen={!!schedulingFor}
+                    onClose={() => setSchedulingFor(undefined)}
+                    product={schedulingFor}
                 />
             )}
         </>

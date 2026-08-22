@@ -3,7 +3,7 @@ import { UserRole } from "../../utils/enum";
 import { useLogout } from "../../features/auth/logout/useLogout";
 import { getItemFromStorage } from "../../utils/storage";
 import { Outlet, useLocation, Link } from "react-router-dom";
-import { LogOut, Home, type LucideIcon, User, Sprout, Tags, ClipboardCheck, Package } from "lucide-react";
+import { LogOut, Home, type LucideIcon, User, Sprout, Tags, ClipboardCheck, Package, ClipboardList } from "lucide-react";
 
 interface NavigationItem {
     id: string;
@@ -17,6 +17,7 @@ const adminNavItems: NavigationItem[] = [
     { id: "dashboard", label: "Dashboard", path: "/admin/dashboard", icon: Home },
     { id: "categories", label: "Categories", path: "/admin/catalog/categories", icon: Tags },
     { id: "products", label: "Product Review", path: "/admin/catalog/products", icon: ClipboardCheck },
+    { id: "inspections", label: "Inspections", path: "/admin/inspections", icon: ClipboardList },
     { id: "profile", label: "Profile", path: "/admin/profile", icon: User },
 ];
 
@@ -36,11 +37,18 @@ const deliveryPartnerNavItems: NavigationItem[] = [
     { id: "profile", label: "Profile", path: "/delivery-partner/profile", icon: User },
 ];
 
+const inspectorNavItems: NavigationItem[] = [
+    { id: "dashboard", label: "Dashboard", path: "/inspector/dashboard", icon: Home },
+    { id: "inspections", label: "My Inspections", path: "/inspector/inspections", icon: ClipboardList },
+    { id: "profile", label: "Profile", path: "/inspector/profile", icon: User },
+];
+
 const navigationItemsByRole: Record<string, NavigationItem[]> = {
     [UserRole.SUPER_ADMIN]: adminNavItems,
     [UserRole.FARMER]: farmerNavItems,
     [UserRole.BUYER]: buyerNavItems,
     [UserRole.DELIVERY_PARTNER]: deliveryPartnerNavItems,
+    [UserRole.INSPECTOR]: inspectorNavItems,
 };
 
 export interface RootLayoutContext {

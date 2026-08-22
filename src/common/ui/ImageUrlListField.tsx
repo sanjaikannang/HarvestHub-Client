@@ -1,18 +1,30 @@
 import { Plus, Trash2 } from "lucide-react";
-import InputField from "../../../../common/ui/Input";
+import InputField from "./Input";
 
 interface ImageUrlListFieldProps {
     images: string[];
     onChange: (images: string[]) => void;
     error?: string;
     touched?: boolean;
+    label?: string;
+    required?: boolean;
+    addButtonLabel?: string;
 }
 
 // Stand-in for real Cloudinary upload — the server has a CloudinaryService
-// with a signed-upload helper, but no controller exposes it yet, so farmers
-// paste image URLs directly for now (see database/products.md — `images` is
-// just `array of string`, Cloudinary URLs by convention).
-const ImageUrlListField = ({ images, onChange, error, touched }: ImageUrlListFieldProps) => {
+// with a signed-upload helper, but no controller exposes it yet, so users
+// paste image URLs directly for now (see database/products.md /
+// database/inspections.md — both just declare these as `array of string`,
+// Cloudinary URLs by convention).
+const ImageUrlListField = ({
+    images,
+    onChange,
+    error,
+    touched,
+    label = "Image URLs",
+    required = true,
+    addButtonLabel = "Add Image URL",
+}: ImageUrlListFieldProps) => {
     const updateAt = (index: number, value: string) => {
         const next = [...images];
         next[index] = value;
@@ -28,7 +40,7 @@ const ImageUrlListField = ({ images, onChange, error, touched }: ImageUrlListFie
     return (
         <div>
             <label className="block text-sm font-medium text-textTertiary mb-2">
-                Image URLs <span className="text-red-600">*</span>
+                {label} {required && <span className="text-red-600">*</span>}
             </label>
             <div className="space-y-2">
                 {images.map((url, index) => (
@@ -44,7 +56,7 @@ const ImageUrlListField = ({ images, onChange, error, touched }: ImageUrlListFie
                             type="button"
                             title="Remove image"
                             onClick={() => removeAt(index)}
-                            disabled={images.length === 1}
+                            disabled={required && images.length === 1}
                             className="p-2 rounded hover:bg-bgSecondary text-red-600 hover:text-red-700 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
                         >
                             <Trash2 className="h-4 w-4" />
@@ -58,7 +70,7 @@ const ImageUrlListField = ({ images, onChange, error, touched }: ImageUrlListFie
                 onClick={() => onChange([...images, ""])}
                 className="flex items-center gap-1.5 text-sm font-medium text-primary hover:underline cursor-pointer mt-2"
             >
-                <Plus className="h-4 w-4" /> Add Image URL
+                <Plus className="h-4 w-4" /> {addButtonLabel}
             </button>
         </div>
     );

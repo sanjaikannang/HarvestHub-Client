@@ -5,6 +5,7 @@ import AdminDashboardPage from "../dashboard/pages/AdminDashboardPage";
 import AdminProfilePage from "../profile/pages/AdminProfilePage";
 import CategoriesPage from "../catalog/categories/pages/CategoriesPage";
 import ProductsReviewPage from "../catalog/products/pages/ProductsReviewPage";
+import InspectionsPage from "../inspections/pages/InspectionsPage";
 
 export const adminRoutes: RouteObject[] = [
     {
@@ -22,5 +23,9 @@ export const adminRoutes: RouteObject[] = [
     {
         path: "/admin/catalog/products",
         element: <RoleGuard allowedRoles={[UserRole.SUPER_ADMIN]}><ProductsReviewPage /></RoleGuard>,
+    },
+    {
+        path: "/admin/inspections",
+        element: <RoleGuard allowedRoles={[UserRole.SUPER_ADMIN]}><InspectionsPage /></RoleGuard>,
     },
 ];

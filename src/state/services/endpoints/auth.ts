@@ -12,6 +12,9 @@ import {
     ForgotPasswordResponse,
     ResetPasswordRequest,
     ResetPasswordResponse,
+    CreateInspectorRequest,
+    CreateInspectorResponse,
+    ListInspectorsResponse,
 } from "../../../types/auth-types";
 
 export const authApiService = apiInstance.injectEndpoints({
@@ -69,6 +72,22 @@ export const authApiService = apiInstance.injectEndpoints({
                 };
             },
         }),
+        createInspector: build.mutation<CreateInspectorResponse, CreateInspectorRequest>({
+            query: (data) => ({
+                url: api.auth.createInspector(),
+                method: "POST",
+                data,
+            }),
+            invalidatesTags: ["inspectors"],
+        }),
+        listInspectors: build.query<ListInspectorsResponse, { districtId?: string } | void>({
+            query: (params) => ({
+                url: api.auth.listInspectors(),
+                method: "GET",
+                params: params || undefined,
+            }),
+            providesTags: ["inspectors"],
+        }),
     }),
 });
 
@@ -79,4 +98,6 @@ export const {
     useChangePasswordMutation,
     useForgotPasswordMutation,
     useResetPasswordMutation,
+    useCreateInspectorMutation,
+    useListInspectorsQuery,
 } = authApiService;

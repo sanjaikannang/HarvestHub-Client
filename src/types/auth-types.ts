@@ -80,3 +80,37 @@ export interface ResetPasswordResponse {
     success: boolean;
     message: string;
 }
+
+export interface CreateInspectorRequest {
+    name: string;
+    phone: string;
+    email?: string;
+    password: string;
+}
+
+export interface CreateInspectorResponse {
+    success: boolean;
+    message: string;
+    data?: {
+        id: string;
+        name: string;
+        phone: string;
+        email?: string;
+        role: string;
+        districtId?: string;
+    };
+}
+
+export interface InspectorSummary {
+    id: string;
+    name: string;
+    phone: string;
+    email?: string;
+    districtId?: string;
+}
+
+export interface ListInspectorsResponse {
+    success: boolean;
+    message: string;
+    data?: InspectorSummary[];
+}

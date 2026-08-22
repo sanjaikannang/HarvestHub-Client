@@ -77,3 +77,17 @@ export enum CollectionMethod {
     DROP_OFF = "drop_off",
     PICKUP_REQUEST = "pickup_request",
 }
+
+// database/inspections.md — the inspector's own recommendation
+export enum RecommendedVerdict {
+    APPROVE = "approve",
+    REJECT = "reject",
+    REQUEST_CHANGES = "request_changes",
+}
+
+// database/inspections.md — the district admin's final, binding call
+export enum AdminDecision {
+    APPROVED = "approved",
+    REJECTED = "rejected",
+    CHANGES_REQUESTED = "changes_requested",
+}

@@ -11,7 +11,7 @@ import { ProductStatus, CollectionMethod, UnitOfMeasure } from "../../../../util
 import { useNavigate, useParams } from "react-router-dom";
 import { formatEnumLabel, getChipVariant, toEnumOptions } from "../../../../utils/utils";
 import { productValidationSchema } from "../formik/product.schema";
-import ImageUrlListField from "../components/ImageUrlListField";
+import ImageUrlListField from "../../../../common/ui/ImageUrlListField";
 import { useListCategoriesQuery } from "../../../../state/services/endpoints/category";
 import { useCreateProductMutation, useGetProductQuery, useUpdateProductMutation } from "../../../../state/services/endpoints/product";
 
