@@ -3,7 +3,7 @@ import { UserRole } from "../../utils/enum";
 import { useLogout } from "../../features/auth/logout/useLogout";
 import { getItemFromStorage } from "../../utils/storage";
 import { Outlet, useLocation, Link } from "react-router-dom";
-import { LogOut, Home, type LucideIcon, User, Sprout, Tags, ClipboardCheck, Package, ClipboardList, Warehouse, ShoppingBasket, Gavel } from "lucide-react";
+import { LogOut, Home, type LucideIcon, User, Sprout, Tags, ClipboardCheck, Package, ClipboardList, Warehouse, ShoppingBasket, Gavel, Wallet, ReceiptText, Settings, Truck } from "lucide-react";
 
 interface NavigationItem {
     id: string;
@@ -19,12 +19,17 @@ const adminNavItems: NavigationItem[] = [
     { id: "products", label: "Product Review", path: "/admin/catalog/products", icon: ClipboardCheck },
     { id: "inspections", label: "Inspections", path: "/admin/inspections", icon: ClipboardList },
     { id: "inventory", label: "Inventory", path: "/admin/inventory", icon: Warehouse },
+    { id: "orders", label: "Orders", path: "/admin/orders", icon: Truck },
+    { id: "payouts", label: "Payouts", path: "/admin/payouts", icon: Wallet },
+    { id: "settings", label: "Settings", path: "/admin/settings", icon: Settings },
     { id: "profile", label: "Profile", path: "/admin/profile", icon: User },
 ];
 
 const farmerNavItems: NavigationItem[] = [
     { id: "dashboard", label: "Dashboard", path: "/farmer/dashboard", icon: Home },
     { id: "products", label: "My Products", path: "/farmer/products", icon: Package, matchPattern: "/farmer/products" },
+    { id: "orders", label: "My Orders", path: "/farmer/orders", icon: Truck },
+    { id: "payouts", label: "My Payouts", path: "/farmer/payouts", icon: Wallet },
     { id: "profile", label: "Profile", path: "/farmer/profile", icon: User },
 ];
 
@@ -32,6 +37,8 @@ const buyerNavItems: NavigationItem[] = [
     { id: "dashboard", label: "Dashboard", path: "/buyer/dashboard", icon: Home },
     { id: "marketplace", label: "Marketplace", path: "/buyer/marketplace", icon: ShoppingBasket, matchPattern: "/buyer/marketplace" },
     { id: "bids", label: "My Bids", path: "/buyer/bids", icon: Gavel },
+    { id: "payments", label: "My Payments", path: "/buyer/payments", icon: Wallet },
+    { id: "orders", label: "My Orders", path: "/buyer/orders", icon: ReceiptText },
     { id: "profile", label: "Profile", path: "/buyer/profile", icon: User },
 ];
 

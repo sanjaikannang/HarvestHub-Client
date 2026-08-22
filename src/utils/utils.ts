@@ -45,6 +45,18 @@ const CHIP_VARIANTS: Record<string, ChipVariant> = {
     REJECTED: "red",
     FAILED: "red",
     UPLOAD_FAILED: "red",
+    INITIATED: "blue",
+    PROCESSING: "yellow",
+    SUCCESSFUL: "green",
+    RELEASED: "green",
+    ON_HOLD: "orange",
+    REVERSED: "red",
+    ORDER_CONFIRMED: "blue",
+    PREPARING_FOR_DISPATCH: "yellow",
+    PICKED_UP: "yellow",
+    IN_TRANSIT: "blue",
+    OUT_FOR_DELIVERY: "blue",
+    DELIVERED: "green",
 };
 
 export const getChipVariant = (value: string): ChipVariant => {

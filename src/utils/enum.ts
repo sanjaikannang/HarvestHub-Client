@@ -114,3 +114,31 @@ export enum BiddingOutcome {
     SOLD = "sold",
     UNSOLD = "unsold",
 }
+
+// database/payments.md — the buyer's 15-minute payment window
+export enum PaymentStatus {
+    INITIATED = "initiated",
+    PROCESSING = "processing",
+    SUCCESSFUL = "successful",
+    FAILED = "failed",
+    EXPIRED = "expired",
+}
+
+// database/payouts.md — commission-adjusted farmer settlement, released
+// manually by an admin until Order & Delivery (08) auto-triggers it
+export enum PayoutStatus {
+    PENDING = "pending",
+    RELEASED = "released",
+    ON_HOLD = "on_hold",
+    REVERSED = "reversed",
+}
+
+// database/orders.md
+export enum DeliveryStatus {
+    ORDER_CONFIRMED = "order_confirmed",
+    PREPARING_FOR_DISPATCH = "preparing_for_dispatch",
+    PICKED_UP = "picked_up",
+    IN_TRANSIT = "in_transit",
+    OUT_FOR_DELIVERY = "out_for_delivery",
+    DELIVERED = "delivered",
+}

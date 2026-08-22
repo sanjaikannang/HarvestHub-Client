@@ -28,5 +28,13 @@ export const apiInstance = createApi({
         "bidding-session",
         "bid-history",
         "my-bids",
+        "my-payments",
+        "payment",
+        "my-orders",
+        "orders",
+        "order",
+        "my-payouts",
+        "payouts",
+        "platform-settings",
     ],
 });

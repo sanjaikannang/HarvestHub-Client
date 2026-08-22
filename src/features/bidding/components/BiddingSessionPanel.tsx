@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 import Chip from "../../../common/ui/Chip";
 import Button from "../../../common/ui/Button";
 import InputField from "../../../common/ui/Input";
@@ -116,6 +117,11 @@ const BiddingSessionPanel = ({ product, canBid }: BiddingSessionPanelProps) => {
                             ? `Sold for ₹${session.winningBidAmount}${session.winnerId === currentUserId ? " — you won!" : ""}`
                             : "Unsold — no bids met the starting price."}
                     </p>
+                    {canBid && session.outcome === "sold" && session.winnerId === currentUserId && (
+                        <Link to="/buyer/payments" className="text-sm font-medium text-primary underline mt-1 inline-block">
+                            Complete your payment &rarr;
+                        </Link>
+                    )}
                 </div>
             )}
 

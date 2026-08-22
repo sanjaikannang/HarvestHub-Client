@@ -10,6 +10,10 @@ import { inspection } from "./inspection.api";
 import { collectionCenter } from "./collection-center.api";
 import { collectionCenterInventory } from "./collection-center-inventory.api";
 import { bidding } from "./bidding.api";
+import { payment } from "./payment.api";
+import { order } from "./order.api";
+import { payout } from "./payout.api";
+import { platformSettings } from "./platform-settings.api";
 
 export const api = {
     auth,
@@ -24,4 +28,8 @@ export const api = {
     collectionCenter,
     collectionCenterInventory,
     bidding,
+    payment,
+    order,
+    payout,
+    platformSettings,
 };
